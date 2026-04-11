@@ -1,5 +1,11 @@
+import Link from "next/link";
+
 function Brand() {
-  return <h1 className="font-bold text-[24px]">COUTURE</h1>;
+  return (
+    <Link href="/" className="font-bold text-[24px] cursor-pointer">
+      COUTURE
+    </Link>
+  );
 }
 
 export default Brand;
