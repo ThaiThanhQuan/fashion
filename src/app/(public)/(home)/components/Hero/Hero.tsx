@@ -1,0 +1,37 @@
+import { images } from "@/src/assets/images";
+import Image from "next/image";
+
+function Hero() {
+  return (
+    <section className="relative h-screen w-full flex items-center bg-gray-900">
+      {/* Background Image Container */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={images.brand}
+          alt="Hero Background"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover w-full h-auto opacity-60"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative container text-white">
+        <h1 className="text-[112px] font-black uppercase leading-[0.9] mb-8">
+          Silent <br /> Authority
+        </h1>
+        <p className="text-[18px] font-light max-w-md mb-10">
+          The 2024 Collection explores the intersection of brutalist
+          architecture and fluid textiles. A study in presence through
+          subtraction.
+        </p>
+        <button className="px-12 py-5 bg-[#5f5e5e] cursor-pointer text-white uppercase tracking-[0.2em] text-xs font-medium transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#535252]">
+          Shop Now
+        </button>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
