@@ -8,6 +8,7 @@ import bag from "./store/bag.png";
 import colo from "./store/colo.png";
 import vay from "./store/vay.png";
 import coat from "./store/coat.png";
+import gucci from "./store/gucci-logo.png";
 
 export const images = {
   brand,
@@ -20,4 +21,5 @@ export const images = {
   colo,
   vay,
   coat,
+  gucci,
 };

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="relative h-screen w-full flex items-center bg-gray-900">
+    <section className="relative flex items-center w-full h-screen bg-gray-900">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -17,7 +17,7 @@ function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative container text-white">
+      <div className="container relative text-white">
         <h1 className="text-[112px] font-black uppercase leading-[0.9] mb-8">
           Silent <br /> Authority
         </h1>

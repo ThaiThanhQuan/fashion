@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { images } from "@/src/assets/images";
 import { ITrendProductItem } from "../../data";
 
 interface ITrendProductProps {

@@ -12,7 +12,7 @@ function Trend() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 px-12">
+      <div className="grid grid-cols-4 gap-2 px-(--padding-width)">
         {TrendMockData.map((item) => (
           <TrendProduct key={item.id} item={item} />
         ))}

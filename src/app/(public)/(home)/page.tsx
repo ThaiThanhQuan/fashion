@@ -1,6 +1,7 @@
 import Collections from "./components/CollectionPreview/CollectionPreview";
 import Hero from "./components/Hero/Hero";
 import NewArrivals from "./components/NewArrivals/NewArrivals";
+import Newsletter from "./components/Newsletter/Newsletter";
 import Trend from "./components/Trend/Trend";
 
 export default function HomePage() {
@@ -10,6 +11,7 @@ export default function HomePage() {
       <Collections />
       <Trend />
       <NewArrivals />
+      <Newsletter />
     </>
   );
 }

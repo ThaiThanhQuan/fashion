@@ -1,4 +1,3 @@
-import { images } from "@/src/assets/images";
 import Image from "next/image";
 import { INewArrivalItem } from "../../data";
 

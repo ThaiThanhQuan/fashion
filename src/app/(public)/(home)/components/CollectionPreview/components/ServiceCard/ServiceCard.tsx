@@ -1,13 +1,13 @@
 function ServiceCard() {
   return (
     <div className="bg-[#f0eded] p-12">
-      <h4 className="font-headline text-xl font-bold mb-4">
+      <h4 className="mb-4 text-xl font-bold font-headline">
         Dịch vụ Xưởng may
       </h4>
-      <p className="font-body text-xs text-on-surface-variant tracking-widest uppercase mb-8">
+      <p className="mb-8 text-xs tracking-widest uppercase font-body text-on-surface-variant">
         May đo riêng & Tư vấn cá nhân
       </p>
-      <button className="text-xs font-bold uppercase text-[#785a1a] tracking-widest border-b border-secondary text-secondary">
+      <button className="text-xs font-bold uppercase text-(--primary-color) tracking-widest border-b border-secondary text-secondary cursor-pointer">
         Đặt lịch hẹn
       </button>
     </div>

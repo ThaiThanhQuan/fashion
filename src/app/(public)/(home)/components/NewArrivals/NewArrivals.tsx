@@ -6,7 +6,7 @@ function NewArrivals() {
   return (
     <div className="py-18">
       <NewArrivalsTitle />
-      <div className="grid grid-cols-3 gap-8 px-12">
+      <div className="grid grid-cols-3 gap-8 px-(--padding-width)">
         {NewArrivalsMockData.map((item) => (
           <NewArrivalsProduct key={item.id} item={item} />
         ))}
