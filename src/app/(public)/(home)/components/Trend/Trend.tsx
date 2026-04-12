@@ -1,5 +1,5 @@
+import { ProductMockData } from "../../../product/data";
 import TrendProduct from "./components/TrendProduct/TrendProduct";
-import { TrendMockData } from "./data";
 
 function Trend() {
   return (
@@ -13,7 +13,7 @@ function Trend() {
       </div>
 
       <div className="grid grid-cols-4 gap-2 px-(--padding-width)">
-        {TrendMockData.map((item) => (
+        {ProductMockData.slice(0, 4).map((item) => (
           <TrendProduct key={item.id} item={item} />
         ))}
       </div>

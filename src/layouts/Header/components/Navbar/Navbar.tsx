@@ -7,7 +7,7 @@ function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/collections", label: "Collections" },
+    { href: "/product", label: "Product" },
     { href: "/atelier", label: "Atelier" },
     { href: "/archive", label: "Archive" },
     { href: "/chatai", label: "Chat with AI" },

@@ -1,4 +1,4 @@
-function CollectionsHeader() {
+function ProductHeader() {
   return (
     <div className="container mb-16">
       <h1 className="mb-4 text-5xl font-extrabold tracking-tighter font-headline text-[#323233]">
@@ -32,4 +32,4 @@ function CollectionsHeader() {
   );
 }
 
-export default CollectionsHeader;
+export default ProductHeader;

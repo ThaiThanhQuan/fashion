@@ -1,5 +1,6 @@
 import { images } from "@/src/assets/images";
 import Image from "next/image";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -27,7 +28,7 @@ function Hero() {
           subtraction.
         </p>
         <button className="px-12 py-5 bg-[#5f5e5e] cursor-pointer text-white uppercase tracking-[0.2em] text-xs font-medium transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#535252]">
-          Shop Now
+          <Link href={"/product"}>Shop Now</Link>
         </button>
       </div>
     </section>

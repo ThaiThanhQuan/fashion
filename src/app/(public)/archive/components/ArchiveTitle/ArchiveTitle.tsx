@@ -1,6 +1,6 @@
 function ArchiveTitle() {
   return (
-    <div>
+    <div className="mb-20">
       <span className="text-(--primary-color) font-semibold tracking-widest text-xs mb-4 block uppercase">
         Di Sản Kỹ Thuật Số
       </span>

@@ -1,8 +1,8 @@
-import { ITrendProductItem } from "@/src/app/(public)/(home)/components/Trend/data";
-import { ICollectionsItem } from "@/src/app/(public)/collections/data";
+import { IProductItem } from "@/src/app/(public)/product/data";
+import Link from "next/link";
 
 interface ITrendProductProps {
-  item: ITrendProductItem | ICollectionsItem;
+  item: IProductItem;
   className?: string;
 }
 
@@ -10,16 +10,19 @@ function ProductInfo({ item, className }: ITrendProductProps) {
   return (
     <div>
       <div className="flex justify-between items-center mb-1">
-        <h3 className="text-[16px] font-semibold text-[#1a1a1a]">
+        <Link
+          href={`/product/${item.slug}`}
+          className="text-[16px] font-semibold text-[#1a1a1a]"
+        >
           {item.title}
-        </h3>
+        </Link>
         <span className={`text-[14px]  ${className}`}>
           ${item.price.toLocaleString("de-DE")}
         </span>
       </div>
 
       <p className="text-[11px] uppercase tracking-[2px] text-gray-400">
-        {item.description}
+        {item.label}
       </p>
     </div>
   );

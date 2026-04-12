@@ -12,7 +12,7 @@ function CollectionTitle() {
 
       <div>
         <Link
-          href="/collections"
+          href="/product"
           className="font-light tracking-widest uppercase text-[12px] pb-1 border-b border-[#323233]/20 hover:border-black"
         >
           Khám phá

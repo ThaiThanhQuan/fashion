@@ -3,7 +3,7 @@ import { Manrope, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const manrope = Manrope({
   subsets: ["vietnamese"],
@@ -22,7 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(manrope.className, "font-sans", geist.variable)}>
+    <html
+      lang="en"
+      className={cn(manrope.className, "font-sans", geist.variable)}
+      data-scroll-behavior="smooth"
+    >
       <body>{children}</body>
     </html>
   );

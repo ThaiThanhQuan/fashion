@@ -1,24 +1,28 @@
 import ProductInfo from "@/src/components/ProductInfo/ProductInfo";
 import Image from "next/image";
-import { ICollectionsItem } from "../../data";
 import ButtonAddProduct from "@/src/components/ButtonAddProduct/ButtonAddProduct";
 import { Heart } from "lucide-react";
+import { IProductItem } from "../../data";
+import Link from "next/link";
 
 interface IProps {
-  item: ICollectionsItem;
+  item: IProductItem;
 }
 
-function CollectionsItem({ item }: IProps) {
+function ProductItem({ item }: IProps) {
   return (
     <div>
       <div className="relative group flex flex-col cursor-pointer ">
         <div className="mb-8 relative aspect-3/4 overflow-hidden ">
-          <Image
-            src={item.thumbnail}
-            fill
-            alt=""
-            className="object-cover w-full h-auto grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
-          />
+          <Link href={`/product/${item.slug}`}>
+            <Image
+              src={item.thumbnail}
+              fill
+              alt=""
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover w-full h-auto grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
+            />
+          </Link>
 
           <ButtonAddProduct />
 
@@ -34,4 +38,4 @@ function CollectionsItem({ item }: IProps) {
   );
 }
 
-export default CollectionsItem;
+export default ProductItem;
