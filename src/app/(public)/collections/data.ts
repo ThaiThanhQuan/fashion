@@ -46,7 +46,7 @@ export const CollectionsMockData: ICollectionsItem[] = [
     thumbnail: images.collection5,
   },
   {
-    id: "3",
+    id: "6",
     title: "Quần Palazzo",
     description: "Ngà Voi / Hỗn Hợp Linen",
     price: 1100,

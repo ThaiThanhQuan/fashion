@@ -15,6 +15,8 @@ import collection3 from "./store/collection3.png";
 import collection4 from "./store/collection4.png";
 import collection5 from "./store/collection5.png";
 import collection6 from "./store/collection6.png";
+import atelier1 from "./store/atelier1.png";
+import atelier2 from "./store/atelier2.png";
 
 export const images = {
   brand,
@@ -34,4 +36,6 @@ export const images = {
   collection4,
   collection5,
   collection6,
+  atelier1,
+  atelier2,
 };

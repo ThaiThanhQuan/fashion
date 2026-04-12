@@ -4,7 +4,7 @@ import FilterSection from "./components/FilterSection/FilterSection";
 import ViewMore from "./components/ViewMore/ViewMore";
 import { CollectionsMockData } from "./data";
 
-function Collections() {
+function CollectionsPage() {
   return (
     <div className="">
       <CollectionsHeader />
@@ -27,4 +27,4 @@ function Collections() {
   );
 }
 
-export default Collections;
+export default CollectionsPage;
