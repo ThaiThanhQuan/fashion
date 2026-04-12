@@ -1,3 +1,4 @@
+import ArtisanList from "./components/ArtisanList/ArtisanList";
 import AtelierContent from "./components/AtelierContent/AtelierContent";
 import AtelierGallery from "./components/AtelierGallery/AtelierGallery";
 import BookAppointment from "./components/BookAppointment/BookAppointment";
@@ -22,6 +23,7 @@ function AtelierPage() {
       <div className="px-(--padding-width)">
         <BookAppointment />
       </div>
+      <ArtisanList />
     </div>
   );
 }
