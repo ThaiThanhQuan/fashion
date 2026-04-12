@@ -1,6 +1,6 @@
 function Newsletter() {
   return (
-    <div className="container flex flex-col items-center py-32 text-center">
+    <div className="container flex flex-col items-center py-(--padding-y) text-center">
       <h2 className="text-3xl font-bold tracking-tight uppercase font-headline">
         Tạp Chí Kỹ Thuật Số
       </h2>

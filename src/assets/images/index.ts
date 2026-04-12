@@ -17,6 +17,9 @@ import collection5 from "./store/collection5.png";
 import collection6 from "./store/collection6.png";
 import atelier1 from "./store/atelier1.png";
 import atelier2 from "./store/atelier2.png";
+import category1 from "./store/category1.png";
+import category2 from "./store/category2.png";
+import category3 from "./store/category3.png";
 
 export const images = {
   brand,
@@ -38,4 +41,7 @@ export const images = {
   collection6,
   atelier1,
   atelier2,
+  category1,
+  category2,
+  category3,
 };

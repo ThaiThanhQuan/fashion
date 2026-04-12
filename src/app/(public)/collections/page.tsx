@@ -1,8 +1,8 @@
-import CollectionsContent from "./components/CollectionsContent/CollectionsContent";
 import CollectionsHeader from "./components/CollectionsHeader/CollectionsHeader";
 import FilterSection from "./components/FilterSection/FilterSection";
 import ViewMore from "./components/ViewMore/ViewMore";
 import { CollectionsMockData } from "./data";
+import CollectionsItem from "./components/CollectionsItem/CollectionsItem";
 
 function CollectionsPage() {
   return (
@@ -16,7 +16,7 @@ function CollectionsPage() {
         <div className="col-span-9">
           <div className=" grid grid-cols-3 gap-x-12 gap-y-24 [&>div:nth-child(3n-1)]:translate-y-12">
             {CollectionsMockData.map((item) => (
-              <CollectionsContent key={item.id} item={item} />
+              <CollectionsItem key={item.id} item={item} />
             ))}
           </div>
         </div>

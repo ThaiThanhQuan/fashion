@@ -1,6 +1,6 @@
 function ViewMore() {
   return (
-    <div className="container flex flex-col items-center py-32 text-center">
+    <div className="container flex flex-col items-center py-(--padding-y) text-center">
       <button className="border border-outline-variant py-6 px-16 text-xs font-headline font-bold uppercase tracking-[0.3em] hover:bg-[#323233] hover:text-white transition-all duration-500 mb-10">
         Xem Thêm Sản Phẩm
       </button>

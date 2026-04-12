@@ -11,7 +11,7 @@ function AtelierGallery() {
         className="object-cover w-full h-full"
       />
 
-      <div className="absolute -bottom-12 -left-24 w-64 h-80 overflow-hidden shadow-2xl">
+      <div className="absolute -bottom-12 -left-24 w-64 h-80 overflow-hidden shadow-2xl aspect-4/5">
         <Image
           src={images.atelier2}
           alt="Atelier 2"

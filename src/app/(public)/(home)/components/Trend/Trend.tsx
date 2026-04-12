@@ -3,7 +3,7 @@ import { TrendMockData } from "./data";
 
 function Trend() {
   return (
-    <div className=" py-32 bg-[#f6f3f2]">
+    <div className=" py-(--padding-y) bg-[#f6f3f2]">
       <div className="container">
         <div className="mb-20">
           <h2 className="text-5xl font-extrabold tracking-tighter uppercase">

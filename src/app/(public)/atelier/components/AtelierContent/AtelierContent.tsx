@@ -17,7 +17,7 @@ function AtelierContent() {
       <div>
         <a
           className="inline-block bg-[#5f5e5e] text-[#faf7f6] px-10 py-5 text-sm uppercase tracking-widest font-semibold hover:bg-[#535252] transition-all duration-300"
-          href="#"
+          href="#categoryservice"
         >
           Khám Phá Dịch Vụ
         </a>
