@@ -8,9 +8,9 @@ function Navbar() {
 
   const navItems = [
     { href: "/collections", label: "Collections" },
-    { href: "/lookbook", label: "Lookbook" },
     { href: "/atelier", label: "Atelier" },
     { href: "/archive", label: "Archive" },
+    { href: "/chatai", label: "Chat with AI" },
   ];
 
   return (

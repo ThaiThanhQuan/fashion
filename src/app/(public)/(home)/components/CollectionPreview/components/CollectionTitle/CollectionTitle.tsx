@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function CollectionTitle() {
   return (
     <div className="flex items-center justify-between gap-4 mt-8">
@@ -9,12 +11,12 @@ function CollectionTitle() {
       </div>
 
       <div>
-        <a
-          href=""
+        <Link
+          href="/collections"
           className="font-light tracking-widest uppercase text-[12px] pb-1 border-b border-[#323233]/20 hover:border-black"
         >
           Khám phá
-        </a>
+        </Link>
       </div>
     </div>
   );
