@@ -1,3 +1,4 @@
+import GoToTop from "@/src/components/GoToTop/GoToTop";
 import Collections from "./components/CollectionPreview/CollectionPreview";
 import Hero from "./components/Hero/Hero";
 import NewArrivals from "./components/NewArrivals/NewArrivals";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Trend />
       <NewArrivals />
       <Newsletter />
+      <GoToTop />
     </>
   );
 }

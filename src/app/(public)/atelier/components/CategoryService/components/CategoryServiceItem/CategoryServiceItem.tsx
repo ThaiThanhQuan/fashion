@@ -8,12 +8,12 @@ interface IProps {
 function CategoryServiceItem({ item }: IProps) {
   return (
     <div className="cursor-pointer">
-      <div className="relative w-full aspect-3/4 mb-8 group ">
+      <div className="relative w-full h-87.5 mb-8 group ">
         <Image
           src={item.thumbnail}
           alt={item.title}
           fill
-          className="object-cover w-full h-full grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
+          className="object-contain w-full h-full grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
         />
       </div>
 
