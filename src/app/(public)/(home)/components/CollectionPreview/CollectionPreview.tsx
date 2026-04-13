@@ -6,7 +6,7 @@ import ServiceCard from "./components/ServiceCard/ServiceCard";
 
 function Collections() {
   return (
-    <section className="grid grid-cols-12 gap-8 py-(--padding-y) container">
+    <section className="grid grid-cols-12 py-(--padding-y) container">
       <div className="col-span-8">
         <MainCampaign />
         <CollectionTitle />
