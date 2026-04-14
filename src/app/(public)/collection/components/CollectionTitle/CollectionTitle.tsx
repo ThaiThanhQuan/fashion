@@ -1,4 +1,4 @@
-function ArchiveTitle() {
+function CollectionTitle() {
   return (
     <div className="mb-20">
       <span className="text-(--primary-color) font-semibold tracking-widest text-xs mb-4 block uppercase">
@@ -14,4 +14,4 @@ function ArchiveTitle() {
   );
 }
 
-export default ArchiveTitle;
+export default CollectionTitle;

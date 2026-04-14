@@ -7,7 +7,7 @@ import CategoryService from "./components/CategoryService/CategoryService";
 function AtelierPage() {
   return (
     <div>
-      <div className="grid grid-cols-12 gap-5 pb-7.5 px-(--padding-width)">
+      <div className="grid grid-cols-12 gap-5 pb-7.5 px-(--padding-x)">
         <div className="col-span-7 flex flex-col justify-center">
           <AtelierContent />
         </div>
@@ -20,7 +20,7 @@ function AtelierPage() {
         <CategoryService />
       </div>
 
-      <div className="px-(--padding-width)">
+      <div className="px-(--padding-x)">
         <BookAppointment />
       </div>
       <ArtisanList />

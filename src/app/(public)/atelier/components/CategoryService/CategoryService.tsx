@@ -4,7 +4,7 @@ import { CategoryServiceMockData } from "./data";
 
 function CategoryService() {
   return (
-    <div className="py-(--padding-y) px-(--padding-width) bg-[#f6f3f2]">
+    <div className="py-(--padding-y) px-(--padding-x) bg-[#f6f3f2]">
       <CategoryServiceHeader />
 
       <div className="grid grid-cols-3 gap-12 [&>div:nth-child(3n-1)]:translate-y-12">

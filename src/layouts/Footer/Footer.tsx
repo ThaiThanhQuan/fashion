@@ -6,7 +6,7 @@ import FooterPolicy from "./components/FooterPolicy/FooterPolicy";
 
 function Footer() {
   return (
-    <footer className="py-20 px-(--padding-width) bg-[#f5f5f4]">
+    <footer className="py-20 px-(--padding-x) bg-[#f5f5f4]">
       <div className="flex justify-between ">
         <FooterBrand />
 

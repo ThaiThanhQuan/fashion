@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FILTER_OPTIONS } from "../../data";
 
-function ArchiveFilter() {
+function CollectionFilter() {
   const [activeYear, setActiveYear] = useState("Tất cả");
   const [activeSeason, setActiveSeason] = useState("Xuân/Hè");
   const [activeCategory, setActiveCategory] = useState("Couture");
@@ -81,4 +81,4 @@ function ArchiveFilter() {
   );
 }
 
-export default ArchiveFilter;
+export default CollectionFilter;

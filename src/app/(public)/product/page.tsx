@@ -10,7 +10,7 @@ function CollectionsPage() {
     <div className="">
       <ProductHeader />
 
-      <div className="px-(--padding-width) grid grid-cols-12 gap-10">
+      <div className="px-(--padding-x) grid grid-cols-12 gap-10">
         <div className="col-span-3">
           <FilterSection />
         </div>

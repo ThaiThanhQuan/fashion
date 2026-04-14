@@ -58,17 +58,17 @@ function Actions() {
           <Handbag size={20} strokeWidth={1.5} />
         </button>
 
-        {isMounted ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                className="hover:text-black transition-colors cursor-pointer"
-                aria-controls="none"
-              >
-                <User size={20} strokeWidth={1.5} />
-              </button>
-            </DropdownMenuTrigger>
+        <DropdownMenu modal={false}>
+          <DropdownMenuTrigger asChild>
+            <button
+              className="hover:text-black transition-colors cursor-pointer"
+              aria-controls="none"
+            >
+              <User size={20} strokeWidth={1.5} />
+            </button>
+          </DropdownMenuTrigger>
 
+          {isMounted && (
             <DropdownMenuContent
               align="end"
               onCloseAutoFocus={(e) => e.preventDefault()}
@@ -79,30 +79,28 @@ function Actions() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-[#f0f0f0]" />
               {actions.user.map((item, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer focus:bg-[#f5f5f5] focus:text-black outline-none transition-colors"
-                >
-                  <Link href={item.href}> {item.label}</Link>
-                </DropdownMenuItem>
+                <Link href={item.href} key={index}>
+                  <DropdownMenuItem className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer focus:bg-[#f5f5f5] focus:text-black outline-none transition-colors">
+                    {item.label}
+                  </DropdownMenuItem>
+                </Link>
               ))}
 
               <DropdownMenuSeparator className="bg-[#f0f0f0]" />
 
               {actions.auth.map((item, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer outline-none transition-colors focus:bg-[#f5f5f5] focus:text-black"
-                >
-                  <Link href={item.href}> {item.label}</Link>
-                </DropdownMenuItem>
+                <Link href={item.href} key={index}>
+                  <DropdownMenuItem
+                    key={index}
+                    className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer outline-none transition-colors focus:bg-[#f5f5f5] focus:text-black"
+                  >
+                    {item.label}
+                  </DropdownMenuItem>
+                </Link>
               ))}
             </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          /* 4. Render một placeholder (skeleton) để tránh nhảy layout */
-          <div className="p-2 w-9 h-9" />
-        )}
+          )}
+        </DropdownMenu>
       </div>
     </div>
   );

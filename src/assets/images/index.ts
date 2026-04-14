@@ -21,6 +21,7 @@ import category1 from "./store/category1.png";
 import category2 from "./store/category2.png";
 import category3 from "./store/category3.png";
 import login from "./store/login.png";
+import bg_author from "./store/bg_author.png";
 
 export const images = {
   brand,
@@ -46,4 +47,5 @@ export const images = {
   category2,
   category3,
   login,
+  bg_author,
 };

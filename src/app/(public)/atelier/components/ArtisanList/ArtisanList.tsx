@@ -3,7 +3,7 @@ import { ArtistMockData } from "../../data";
 
 function ArtisanList() {
   return (
-    <div className="py-(--padding-y) px-(--padding-width) bg-[#f6f3f2]">
+    <div className="py-(--padding-y) px-(--padding-x) bg-[#f6f3f2]">
       <h2 className="text-5xl font-bold tracking-tighter uppercase mb-6">
         Đội Ngũ Nghệ Nhân
       </h2>

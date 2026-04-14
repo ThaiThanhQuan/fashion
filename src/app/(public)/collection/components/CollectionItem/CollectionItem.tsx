@@ -1,19 +1,17 @@
 import Image from "next/image";
 import { COLLECTIONS_DATA } from "../../data";
+import Link from "next/link";
+import { getGridPosition } from "@/src/utils/layoutHelpers";
 
-function ArchiveItem() {
+function CollectionItem() {
   return (
     <div className="grid grid-cols-12 gap-8">
       {COLLECTIONS_DATA.map((item, index) => {
-        // Xác định xem item nằm ở vị trí nào trong cụm 4 cái (0, 1, 2, 3)
-        const position = index % 4;
-
-        // Logic cho từng vị trí
-        const isBig = position === 0 || position === 3; // 0 và 3 là ô to (span-8)
-        const hasMargin = position === 1 || position === 3; // 1 và 3 là ô thụt xuống (mt-24)
+        const { isBig, hasMargin } = getGridPosition(index);
 
         return (
-          <div
+          <Link
+            href={`/collection/${item.slug}`}
             key={item.id}
             className={`group cursor-pointer 
           ${isBig ? "col-span-8" : "col-span-4"} 
@@ -37,11 +35,11 @@ function ArchiveItem() {
               </span>
               <h3 className="text-2xl font-bold mt-2">{item.title}</h3>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
   );
 }
 
-export default ArchiveItem;
+export default CollectionItem;
