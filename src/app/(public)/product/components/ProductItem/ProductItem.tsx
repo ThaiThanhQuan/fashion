@@ -1,9 +1,11 @@
+"use client";
 import ProductInfo from "@/src/components/ProductInfo/ProductInfo";
 import Image from "next/image";
 import ButtonAddProduct from "@/src/components/ButtonAddProduct/ButtonAddProduct";
 import { Heart } from "lucide-react";
 import { IProductItem } from "../../data";
 import Link from "next/link";
+import Tilt from "react-parallax-tilt";
 
 interface IProps {
   item: IProductItem;
@@ -15,13 +17,21 @@ function ProductItem({ item }: IProps) {
       <div className="relative group flex flex-col cursor-pointer ">
         <div className="mb-8 relative aspect-3/4 overflow-hidden ">
           <Link href={`/product/${item.slug}`}>
-            <Image
-              src={item.thumbnail}
-              fill
-              alt=""
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover w-full h-auto grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
-            />
+            <Tilt
+              tiltMaxAngleX={15}
+              tiltMaxAngleY={15}
+              perspective={1000}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full h-full"
+            >
+              <Image
+                src={item.thumbnail}
+                fill
+                alt=""
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover w-full h-auto grayscale duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
+              />
+            </Tilt>
           </Link>
 
           <ButtonAddProduct />

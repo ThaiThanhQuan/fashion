@@ -1,11 +1,14 @@
-import Header from "@/src/layouts/Header/Header";
+import AuthTabs from "./components/AuthTabs/AuthTabs";
+import Branding from "./components/Branding/Branding";
 
 function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Header />
-      <div className="mt-25 flex-1">{children}</div>
-    </>
+    <div className="grid grid-cols-2  ">
+      <Branding />
+      <div className="mt-10 px-24">
+        <AuthTabs>{children}</AuthTabs>
+      </div>
+    </div>
   );
 }
 

@@ -6,16 +6,25 @@ import Typewriter from "typewriter-effect";
 
 function Hero() {
   return (
-    <section className="relative flex items-center w-full h-screen bg-gray-900">
+    <section className="relative flex items-center w-full h-[90vh] bg-gray-900">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
-        <Image
+        {/* <Image
           src={images.brand}
           alt="Hero Background"
           fill
           sizes="100vw"
           priority
           className="object-cover w-full h-auto opacity-60"
+        /> */}
+
+        <video
+          src="/videos/hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="object-cover w-full h-full opacity-60"
         />
       </div>
 
