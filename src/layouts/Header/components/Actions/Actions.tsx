@@ -10,8 +10,11 @@ import {
 import { useIsMounted } from "@/src/hooks/useIsMounted";
 import { Handbag, Heart, User } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Actions() {
+  const pathname = usePathname();
+
   const isMounted = useIsMounted();
   const actions = {
     user: [
@@ -37,6 +40,19 @@ function Actions() {
     ],
   };
 
+  const actionItems = [
+    {
+      icon: <Heart size={20} strokeWidth={1.5} />,
+      href: "/like",
+      key: "heart",
+    },
+    {
+      icon: <Handbag size={20} strokeWidth={1.5} />,
+      href: "/order",
+      key: "bag",
+    },
+  ];
+
   return (
     <div className="flex items-center gap-6">
       {/* Search Bar */}
@@ -50,18 +66,30 @@ function Actions() {
 
       {/* Icons Group */}
       <div className="flex items-center gap-5 text-gray-700 ">
-        <button className="hover:text-black transition-colors cursor-pointer">
-          <Heart size={20} strokeWidth={1.5} />
-        </button>
+        {actionItems.map((action) => {
+          const isActive = pathname === action.href;
+          return (
+            <Link
+              key={action.key}
+              href={action.href}
+              className={`
+                  relative flex items-center hover:text-black transition-colors cursor-pointer
 
-        <button className="hover:text-black transition-colors cursor-pointer">
-          <Handbag size={20} strokeWidth={1.5} />
-        </button>
+                   after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-[#5f5e5e]
+          after:transition-all after:duration-500 after:ease-in-out
+
+            ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
+                `}
+            >
+              {action.icon}
+            </Link>
+          );
+        })}
 
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <button
-              className="hover:text-black transition-colors cursor-pointer"
+              className="flex items-center hover:text-black transition-colors cursor-pointer"
               aria-controls="none"
             >
               <User size={20} strokeWidth={1.5} />

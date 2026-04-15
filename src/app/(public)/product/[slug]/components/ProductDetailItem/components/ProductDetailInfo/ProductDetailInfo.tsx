@@ -1,3 +1,7 @@
+"use client";
+import { useState } from "react";
+import { useCartStore } from "@/src/store/useCartStore";
+import { useRouter } from "next/navigation";
 import { IProductItem } from "@/src/app/(public)/product/data";
 import SizeSelector from "@/src/components/SizeSelector/SizeSelector";
 import { Heart, Plus } from "lucide-react";
@@ -6,6 +10,15 @@ interface IProps {
   product: IProductItem;
 }
 function ProductDetailInfo({ product }: IProps) {
+  const [selectedSize, setSelectedSize] = useState("");
+  const addItem = useCartStore((state) => state.addItem);
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    if (!selectedSize) return alert("Vui lòng chọn size!");
+    addItem(product, selectedSize);
+    router.push("/order");
+  };
   return (
     <div>
       <p className="font-headline text-(--primary-color) tracking-widest text-xs font-bold uppercase">
@@ -30,10 +43,13 @@ function ProductDetailInfo({ product }: IProps) {
 
       <div className="mt-6 h-px w-12 bg-[#b2b2b14d]"></div>
 
-      <SizeSelector />
+      <SizeSelector selectedSize={selectedSize} onSelect={setSelectedSize} />
 
       <div className="mt-10 flex flex-col gap-4">
-        <button className="w-full py-5 bg-[#5f5e5e] text-[#faf7f6] font-headline font-bold uppercase tracking-widest transition-all hover:bg-[#535252] hover:-translate-y-0.5 flex items-center justify-center gap-2">
+        <button
+          onClick={handleAddToCart}
+          className="w-full py-5 bg-[#5f5e5e] text-[#faf7f6] font-headline font-bold uppercase tracking-widest transition-all hover:bg-[#535252] hover:-translate-y-0.5 flex items-center justify-center gap-2"
+        >
           <Plus color="white" size={18} /> Thêm nhanh
         </button>
 

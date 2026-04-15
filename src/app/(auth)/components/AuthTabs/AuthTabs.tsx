@@ -31,10 +31,10 @@ function AuthTabs({ children }: IProps) {
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <button key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`
                 relative pb-2 text-sm font-label uppercase tracking-widest transition-colors duration-500
           ${isActive ? "text-[#323233]" : "text-gray-400 hover:text-[#323233]"}
           
@@ -43,10 +43,9 @@ function AuthTabs({ children }: IProps) {
           
           ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
                 `}
-                >
-                  {item.label}
-                </Link>
-              </button>
+              >
+                {item.label}
+              </Link>
             );
           })}
         </nav>
