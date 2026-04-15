@@ -20,6 +20,7 @@ function Hero() {
 
         <video
           src="/videos/hero.mp4"
+          poster="/images/hero-poster.jpg"
           autoPlay
           loop
           muted

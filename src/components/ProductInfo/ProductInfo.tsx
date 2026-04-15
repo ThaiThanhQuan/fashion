@@ -10,12 +10,7 @@ function ProductInfo({ item, className }: ITrendProductProps) {
   return (
     <div>
       <div className="flex justify-between items-center mb-1">
-        <Link
-          href={`/product/${item.slug}`}
-          className="text-[16px] font-semibold text-[#1a1a1a]"
-        >
-          {item.title}
-        </Link>
+        <p className="text-[16px] font-semibold text-[#1a1a1a]">{item.title}</p>
         <span className={`text-[14px]  ${className}`}>
           ${item.price.toLocaleString("de-DE")}
         </span>
