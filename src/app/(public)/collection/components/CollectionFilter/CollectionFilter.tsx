@@ -8,7 +8,7 @@ function CollectionFilter() {
   const [activeCategory, setActiveCategory] = useState("Couture");
 
   return (
-    <div className="flex flex-wrap gap-12 cursor-pointer py-8 mb-16 border-b border-[#b2b2b126]">
+    <div className="flex flex-wrap gap-12 cursor-pointer pb-8 mb-16 border-b border-[#b2b2b126]">
       {/* Year Filter */}
       <div>
         <p className="text-[10px] uppercase tracking-[0.2em] text-[#5f5f5f] mb-4 block">

@@ -22,7 +22,6 @@ import category2 from "./store/category2.png";
 import category3 from "./store/category3.png";
 import login from "./store/login.png";
 import bg_author from "./store/bg_author.png";
-
 export const images = {
   brand,
   collection,

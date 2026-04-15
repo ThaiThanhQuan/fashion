@@ -21,7 +21,7 @@ function AuthTabs({ children }: IProps) {
   return (
     <div>
       <Link href={"/"} className="flex items-center gap-2 mb-5">
-        <ArrowLeftIcon />{" "}
+        <ArrowLeftIcon />
         <p className="text-sm font-label uppercase tracking-widest">
           Trở về trang chủ
         </p>

@@ -5,6 +5,7 @@
   --background-color: #ffffff;
 
   /* Layout */
+  --header-height: 85px;
   --padding-x: 48px;
   --padding-y: 128px;
 }

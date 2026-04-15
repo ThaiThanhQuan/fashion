@@ -20,7 +20,7 @@ function Actions() {
     user: [
       {
         label: "Thông tin cá nhân",
-        href: "/info",
+        href: "/profile",
       },
       {
         label: "Đơn hàng của tôi",

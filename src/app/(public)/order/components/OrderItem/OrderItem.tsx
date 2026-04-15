@@ -32,13 +32,16 @@ function OrderItem({ item }: IProps) {
             </p>
           </div>
 
-          <p className="text-lg font-medium text-[#323233]">
-            $ {item.product.price.toLocaleString("de-DE")}
-          </p>
+          <div>
+            <p className="text-lg font-medium text-[#323233]">
+              $ {item.product.price.toLocaleString("de-DE")}
+            </p>
+            <span className="text-sm w-4 text-center">{item.quantity}</span>
+          </div>
         </div>
 
         <div className="flex justify-between">
-          <QuantitySelector />
+          <QuantitySelector item={item} />
 
           <button
             onClick={() => removeItem(item.product.slug, item.size)}

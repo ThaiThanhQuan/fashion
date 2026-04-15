@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { IProductItem } from "@/src/app/(public)/product/data";
 import SizeSelector from "@/src/components/SizeSelector/SizeSelector";
 import { Heart, Plus } from "lucide-react";
+import { toast } from "sonner";
 
 interface IProps {
   product: IProductItem;
@@ -15,7 +16,25 @@ function ProductDetailInfo({ product }: IProps) {
   const router = useRouter();
 
   const handleAddToCart = () => {
-    if (!selectedSize) return alert("Vui lòng chọn size!");
+    if (!selectedSize) {
+      toast.info("Vui lòng chọn size!", {
+        position: "top-center",
+        duration: 3000,
+        description: "Bạn cần chọn kích cỡ trước khi thêm vào giỏ hàng.",
+        classNames: {
+          toast:
+            "rounded-none border border-[#e5e5e5] shadow-sm bg-white px-5 py-4 gap-4",
+          title:
+            "text-[11px] font-bold uppercase tracking-[0.15em] text-[#323233]",
+          description: "text-[10px] tracking-wide font-light !text-[#5f5f5f]",
+        },
+      });
+      return;
+    }
+    toast.success("Đã thêm vào giỏ hàng!", {
+      position: "top-center",
+      duration: 3000,
+    });
     addItem(product, selectedSize);
     router.push("/order");
   };

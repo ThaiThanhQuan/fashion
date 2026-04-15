@@ -16,7 +16,7 @@ export default async function ProductDetailPage({
   }
 
   return (
-    <div className="px-(--padding-x) py-(--padding-y)">
+    <div className="px-(--padding-x) pt-2.5 pb-(--padding-y)">
       <Breadcrumbs product={product} />
       <ProductDetailItem product={product} />
     </div>

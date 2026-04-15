@@ -7,7 +7,7 @@ import ButtonViewMore from "@/src/components/ButtonViewMore/ButtonViewMore";
 
 function CollectionsPage() {
   return (
-    <div className="">
+    <div className="pt-2.5">
       <ProductHeader />
 
       <div className="px-(--padding-x) grid grid-cols-12 gap-10">

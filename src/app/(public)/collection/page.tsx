@@ -5,7 +5,7 @@ import CollectionTitle from "./components/CollectionTitle/CollectionTitle";
 
 function CollectionPage() {
   return (
-    <div className="px-(--padding-x) py-(--padding-y)">
+    <div className="px-(--padding-x) pt-2.5 pb-(--padding-y)">
       <CollectionTitle />
       <CollectionFilter />
       <CollectionItem />

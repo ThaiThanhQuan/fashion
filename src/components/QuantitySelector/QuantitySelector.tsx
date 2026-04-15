@@ -1,7 +1,13 @@
 "use client";
+import { ICartItem, useCartStore } from "@/src/store/useCartStore";
 import { useState } from "react";
 
-export default function QuantitySelector() {
+interface IProps {
+  item: ICartItem;
+}
+
+export default function QuantitySelector({ item }: IProps) {
+  const { increment, decrement } = useCartStore();
   const [quantity, setQuantity] = useState(1);
 
   const decrease = () => {
@@ -15,7 +21,7 @@ export default function QuantitySelector() {
   return (
     <div className="flex items-center border border-[#b2b2b133] px-4 py-2 gap-6">
       <button
-        onClick={decrease}
+        onClick={() => (decrease(), decrement(item.product.slug, item.size))}
         className="text-sm hover:text-(--primary-color) transition-colors"
       >
         −
@@ -24,7 +30,7 @@ export default function QuantitySelector() {
       <span className="text-sm font-medium w-4 text-center">{quantity}</span>
 
       <button
-        onClick={increase}
+        onClick={() => (increase(), increment(item.product.slug, item.size))}
         className="text-sm hover:text-(--primary-color) transition-colors"
       >
         +

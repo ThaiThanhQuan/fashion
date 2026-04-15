@@ -11,6 +11,8 @@ export interface ICartStore {
   items: ICartItem[];
   addItem: (product: IProductItem, size: string) => void;
   removeItem: (productId: string, size: string) => void;
+  increment: (productId: string, size: string) => void;
+  decrement: (productId: string, size: string) => void;
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
@@ -35,6 +37,24 @@ export const useCartStore = create<ICartStore>((set) => ({
     set((state) => ({
       items: state.items.filter(
         (i) => !(i.product.slug === productId && i.size === size),
+      ),
+    })),
+
+  increment: (productId, size) =>
+    set((state) => ({
+      items: state.items.map((i) =>
+        i.product.slug === productId && i.size === size
+          ? { ...i, quantity: i.quantity + 1 }
+          : i,
+      ),
+    })),
+
+  decrement: (productId, size) =>
+    set((state) => ({
+      items: state.items.map((i) =>
+        i.product.slug === productId && i.size === size
+          ? { ...i, quantity: Math.max(1, i.quantity - 1) }
+          : i,
       ),
     })),
 }));
