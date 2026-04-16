@@ -49,7 +49,7 @@ function DashboardProfile() {
   ];
 
   return (
-    <div className="flex flex-col w-75 h-221 bg-[#fcf9f8] px-6">
+    <aside className="flex flex-col w-75 h-221 bg-[#f5f5f4] px-6">
       <div className="mt-2.5 mb-8 px-4">
         <div className="mb-2">
           <div
@@ -133,7 +133,7 @@ function DashboardProfile() {
           );
         })}
       </nav>
-    </div>
+    </aside>
   );
 }
 

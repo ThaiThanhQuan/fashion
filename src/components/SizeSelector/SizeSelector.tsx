@@ -1,8 +1,7 @@
-// SizeSelector.tsx
 "use client";
 interface IProps {
-  selectedSize: string;
-  onSelect: (size: string) => void;
+  selectedSize?: string;
+  onSelect?: (size: string) => void;
 }
 
 function SizeSelector({ selectedSize, onSelect }: IProps) {
@@ -17,7 +16,7 @@ function SizeSelector({ selectedSize, onSelect }: IProps) {
         {sizes.map((size, index) => (
           <button
             key={index}
-            onClick={() => onSelect(size)}
+            onClick={() => onSelect?.(size)}
             className={`border py-3 text-[10px] focus:outline-none cursor-pointer transition-all duration-300
               ${
                 selectedSize === size
