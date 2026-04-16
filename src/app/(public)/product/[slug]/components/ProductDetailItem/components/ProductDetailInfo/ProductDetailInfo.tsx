@@ -12,7 +12,7 @@ interface IProps {
 }
 function ProductDetailInfo({ product }: IProps) {
   const [selectedSize, setSelectedSize] = useState("");
-  const addItem = useCartStore((state) => state.addItem);
+  const { addItem } = useCartStore();
   const router = useRouter();
 
   const handleAddToCart = () => {

@@ -8,7 +8,7 @@ interface IProps {
 }
 
 function OrderItem({ item }: IProps) {
-  const removeItem = useCartStore((state) => state.removeItem);
+  const { removeItem } = useCartStore();
 
   return (
     <div className="flex gap-8 py-2">

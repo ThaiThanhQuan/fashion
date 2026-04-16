@@ -2,7 +2,7 @@ import { useCartStore } from "@/src/store/useCartStore";
 import { ShieldCheck, Truck } from "lucide-react";
 
 function OrderSummary() {
-  const items = useCartStore((state) => state.items);
+  const { items } = useCartStore();
   const total = items.reduce((acc, i) => acc + i.product.price * i.quantity, 0);
   const vat = total * 0.1;
   const grandTotal = total + vat;

@@ -1,50 +1,77 @@
-import { CircleCheck, MapPin, Pencil, Phone, Trash2 } from "lucide-react";
+"use client";
+import { CircleCheck } from "lucide-react";
+import { useState } from "react";
+import FormAddress from "./components/FormAddress/FormAddress";
+import FormActions from "./components/FormActions/FormActions";
+
+export interface AddressData {
+  name: string;
+  phone: string;
+  address: string;
+}
 
 function AddressInfo() {
-  return (
-    <div className="bg-white p-10 flex flex-col justify-between group transition-all duration-300 border-l-4 border-(--primary-color) relative">
-      <div className="flex justify-between">
-        <h3 className="text-xl font-bold mb-6 text-[#333232]">
-          Nguyễn Minh Anh
-        </h3>
+  const [isEditing, setIsEditing] = useState(false);
+  const [data, setData] = useState<AddressData>({
+    name: "Nguyễn Minh Anh",
+    phone: "(+84) 902 123 456",
+    address: "Căn hộ 1502, Tòa nhà Landmark 81",
+  });
+  const [draft, setDraft] = useState<AddressData>(data);
+  const handleEdit = () => {
+    setDraft(data);
+    setIsEditing(true);
+  };
 
-        <div className="flex items-center gap-2 bg-[#785a1a1a] text-(--primary-color) px-3 h-6 text-[10px] font-bold uppercase tracking-widest">
+  const handleSave = () => {
+    setData(draft);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setDraft(data);
+    setIsEditing(false);
+  };
+
+  const inputClass =
+    "w-full bg-transparent border-b border-(--primary-color) text-[#333232] text-sm outline-none py-1 placeholder:text-[#b2b2b1] transition-all duration-200 focus:border-b-2";
+  return (
+    <div className="bg-white p-10 flex flex-col justify-between transition-all duration-300 border-l-4 border-(--primary-color) relative">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-6">
+        {isEditing ? (
+          <input
+            className={`${inputClass} text-xl font-bold flex-1 mr-4`}
+            value={draft.name}
+            onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+            placeholder="Họ và tên"
+          />
+        ) : (
+          <h3 className="text-xl font-bold text-[#333232]">{data.name}</h3>
+        )}
+
+        <div className="flex items-center gap-2 bg-[#785a1a1a] text-[--primary-color] px-3 h-6 text-[10px] font-bold uppercase tracking-widest shrink-0">
           <CircleCheck size={15} />
           <span>Mặc định</span>
         </div>
       </div>
 
-      <div className="space-y-8">
-        <div className="flex items-start gap-4">
-          <Phone size={20} color="#5f5f5f" />
-          <span className="text-[#5f5f5f] text-sm tracking-wide">
-            (+84) 902 123 456
-          </span>
-        </div>
+      {/* Fields */}
+      <FormAddress
+        isEditing={isEditing}
+        inputClass={inputClass}
+        draft={draft}
+        setDraft={setDraft}
+        data={data}
+      />
 
-        <div className="flex items-start gap-4">
-          <MapPin size={20} color="#5f5f5f" />
-          <span className="text-[#5f5f5f] text-sm leading-loose">
-            Căn hộ 1502, Tòa nhà Landmark 81
-            <br />
-            720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh
-            <br />
-            Thành phố Hồ Chí Minh
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-12 pt-8 border-t border-[#b2b2b11a] flex items-center gap-8">
-        <button className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#323233] hover:text-(--primary-color) transition-colors flex items-center gap-2">
-          <Pencil size={15} />
-          <span>Chỉnh sửa</span>
-        </button>
-
-        <button className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#b2b2b1] hover:text-[#9f403d] transition-colors flex items-center gap-2">
-          <Trash2 size={15} />
-          <span>Xóa</span>
-        </button>
-      </div>
+      {/* Footer actions */}
+      <FormActions
+        isEditing={isEditing}
+        handleSave={handleSave}
+        handleCancel={handleCancel}
+        handleEdit={handleEdit}
+      />
     </div>
   );
 }
