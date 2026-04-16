@@ -32,7 +32,7 @@ function AddressModal({ open, setOpen }: IProps) {
               className="w-full bg-transparent outline-none border-b border-[#b2b2b133] py-3 text-[#323233] placeholder:text-[#5f5f5f]/40 focus:ring-0 focus:border-[#323233] transition-all"
               id="address"
               placeholder="SỐ NHÀ, TÊN ĐƯỜNG, QUẬN/HUYỆN"
-              value={""}
+              // value={""}
               onChange={() => {}}
             />
           </div>

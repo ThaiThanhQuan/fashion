@@ -15,7 +15,7 @@ function CollectionsPage() {
           <FilterSection />
         </div>
         <div className="col-span-9">
-          <div className=" grid grid-cols-3 gap-x-12 gap-y-24 [&>div:nth-child(3n-1)]:translate-y-12">
+          <div className="grid grid-cols-3 gap-x-12 gap-y-24 [&>div:nth-child(3n-1)]:translate-y-12">
             {ProductMockData.map((item) => (
               <ProductItem key={item.id} item={item} />
             ))}
