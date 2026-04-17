@@ -20,7 +20,7 @@ function AtelierPage() {
         <CategoryService />
       </div>
 
-      <div className="px-(--padding-x)">
+      <div id="service" className="px-(--padding-x)">
         <BookAppointment />
       </div>
       <ArtisanList />

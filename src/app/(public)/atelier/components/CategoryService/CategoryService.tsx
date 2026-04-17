@@ -1,6 +1,6 @@
 import CategoryServiceHeader from "./components/CategoryServiceHeader/CategoryServiceHeader";
 import CategoryServiceItem from "./components/CategoryServiceItem/CategoryServiceItem";
-import { CategoryServiceMockData } from "./data";
+import { CategoryServiceMockData } from "../../data";
 
 function CategoryService() {
   return (

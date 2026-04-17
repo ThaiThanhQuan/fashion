@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArtistMockData } from "../../data";
+import { ArtistMockData } from "./data";
 
 function ArtisanList() {
   return (
