@@ -3,7 +3,7 @@ import CustomerInformation from "./components/CustomerInformation/CustomerInform
 
 function BookAppointment() {
   return (
-    <div className="py-(--padding-y)">
+    <div className="py-(--padding-y) px-(--padding-x)">
       <div className="grid grid-cols-2 gap-12">
         <Book />
         <CustomerInformation />

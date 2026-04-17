@@ -26,7 +26,7 @@ function HeroCollection({ collection }: IProps) {
           <h1 className="text-8xl font-bold tracking-tighter leading-none mb-8">
             {collection.title}
           </h1>
-          <p className="text-[#5f5f5f] ext-xl max-w-2xl leading-relaxed">
+          <p className="text-[#5f5f5f] text-xl max-w-2xl leading-relaxed">
             {collection.desc}
           </p>
         </div>

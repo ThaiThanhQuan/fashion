@@ -6,7 +6,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <div className="mt-(--header-height) flex-1">{children}</div>
+      <div className="mt-(--header-height)">{children}</div>
       <Toaster />
       <Footer />
     </>
