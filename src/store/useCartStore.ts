@@ -13,6 +13,7 @@ export interface ICartStore {
   removeItem: (productId: string, size: string) => void;
   increment: (productId: string, size: string) => void;
   decrement: (productId: string, size: string) => void;
+  clearCart: () => void;
 }
 
 export const useCartStore = create<ICartStore>((set) => ({
@@ -57,4 +58,5 @@ export const useCartStore = create<ICartStore>((set) => ({
           : i,
       ),
     })),
+  clearCart: () => set({ items: [] }),
 }));

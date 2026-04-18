@@ -10,11 +10,11 @@ import {
 import { useIsMounted } from "@/src/hooks/useIsMounted";
 import { Handbag, Heart, User } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function Actions() {
+  const router = useRouter();
   const pathname = usePathname();
-
   const isMounted = useIsMounted();
   const actions = {
     user: [
@@ -60,6 +60,7 @@ function Actions() {
         <input
           type="search"
           placeholder="SEARCH"
+          onFocus={() => router.push("/product")} // ← click vào là navigate luôn
           className="w-48 h-8 border-b border-gray-300 focus:border-black outline-none text-[11px] tracking-[0.2em] transition-all placeholder:text-gray-400"
         />
       </div>

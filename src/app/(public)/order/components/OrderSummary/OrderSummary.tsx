@@ -6,8 +6,6 @@ import Link from "next/link";
 function OrderSummary() {
   const { items } = useCartStore();
   const total = items.reduce((acc, i) => acc + i.product.price * i.quantity, 0);
-  const vat = total * 0.1;
-  const grandTotal = total + vat;
 
   return (
     <div className="bg-[#f6f3f2] p-12 sticky top-32">
@@ -23,22 +21,10 @@ function OrderSummary() {
           </span>
         </div>
 
-        <div className="flex justify-between text-sm uppercase tracking-wider text-[#5f5f5f]">
-          <span>Giao Hàng</span>
-          <span className="text-[#323233] font-medium">Miễn Phí</span>
-        </div>
-
-        <div className="flex justify-between text-sm uppercase tracking-wider text-[#5f5f5f]">
-          <span>Thuế Ước Tính (10%)</span>
-          <span className="text-[#323233] font-medium">
-            $ {vat.toLocaleString("de-DE")}
-          </span>
-        </div>
-
         <div className="pt-6 border-t border-[#b2b2b133] flex justify-between items-baseline">
           <span className="text-lg font-bold tracking-tight">Tổng Cộng</span>
           <span className="text-3xl font-black tracking-tighter">
-            ${grandTotal.toLocaleString("de-DE")}
+            ${total.toLocaleString("de-DE")}
           </span>
         </div>
       </div>
