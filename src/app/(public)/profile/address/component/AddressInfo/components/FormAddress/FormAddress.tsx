@@ -1,5 +1,5 @@
+import { AddressData } from "@/src/store/useAddressStore";
 import { MapPin, Phone } from "lucide-react";
-import { AddressData } from "../../AddressInfo";
 
 interface IProps {
   isEditing: boolean;

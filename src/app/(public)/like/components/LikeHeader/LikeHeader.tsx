@@ -1,3 +1,4 @@
+"use client";
 import { useWishlistStore } from "@/src/store/useWishlistStore";
 
 function LikeHeader() {

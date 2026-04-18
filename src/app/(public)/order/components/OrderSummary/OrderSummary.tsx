@@ -1,5 +1,7 @@
+"use client";
 import { useCartStore } from "@/src/store/useCartStore";
 import { ShieldCheck, Truck } from "lucide-react";
+import Link from "next/link";
 
 function OrderSummary() {
   const { items } = useCartStore();
@@ -41,9 +43,12 @@ function OrderSummary() {
         </div>
       </div>
 
-      <button className="w-full bg-[#5f5e5e] py-6 text-[#faf7f6] font-bold uppercase tracking-[0.2em] text-sm hover:bg-[#535252] transition-all duration-500 transform hover:-translate-y-1">
+      <Link
+        href={"/checkout"}
+        className="inline-block text-center w-full bg-[#5f5e5e] py-6 text-[#faf7f6] font-bold uppercase tracking-[0.2em] text-sm hover:bg-[#535252] transition-all duration-500 transform hover:-translate-y-1"
+      >
         Tiến Hành Thanh Toán
-      </button>
+      </Link>
 
       <div className="mt-10 flex flex-col gap-4">
         <div className="flex items-center gap-4 text-[#5f5f5f]">

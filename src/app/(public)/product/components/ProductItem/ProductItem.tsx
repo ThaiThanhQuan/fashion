@@ -13,8 +13,6 @@ interface IProps {
 }
 
 function ProductItem({ item }: IProps) {
-  // const router = useRouter();
-
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
 
   const isLiked = wishlist.some((wishItem) => wishItem.id === item.id);
