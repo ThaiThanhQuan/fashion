@@ -1,0 +1,10 @@
+// types/index.d.ts
+export * from './common.type'
+export * from './auth.type'
+export * from './product.type'
+export * from './collection.type'
+export * from './artist.type'
+export * from './order.type'
+export * from './wishlist.type'
+export * from './address.type'
+export * from './service.type'

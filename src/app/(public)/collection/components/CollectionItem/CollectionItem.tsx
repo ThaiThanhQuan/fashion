@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import ButtonViewMore from "@/src/components/ButtonViewMore/ButtonViewMore";
 import { ICollectionItem } from "../../data";
 
 interface IProps {
@@ -34,7 +33,7 @@ function CollectionItem({ item, isBig, hasMargin }: IProps) {
         <span className="text-xs text-[#5f5f5f] font-medium tracking-widest uppercase">
           {item.year} : {item.category}
         </span>
-        <h3 className="text-2xl font-bold mt-2">{item.title}</h3>
+        <h3 className="mt-2 text-2xl font-bold">{item.title}</h3>
       </div>
     </Link>
   );

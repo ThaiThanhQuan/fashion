@@ -107,22 +107,6 @@ function RegisterForm() {
         </div>
       </div>
 
-      {/* Địa chỉ - Cho nó chiếm hết 2 cột để không bị cụt */}
-      <div className="col-span-2 flex flex-col">
-        <label
-          htmlFor="address"
-          className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#5f5f5f]"
-        >
-          Địa chỉ
-        </label>
-        <input
-          id="address"
-          type="text"
-          placeholder="SỐ NHÀ, TÊN ĐƯỜNG, QUẬN/HUYỆN"
-          className="w-full bg-transparent outline-none border-b border-[#b2b2b133] py-3 text-[#323233] placeholder:text-[#5f5f5f]/40 focus:ring-0 focus:border-[#323233] transition-all"
-        />
-      </div>
-
       {/* Nút Đăng Ký - Chiếm hết 2 cột */}
       <div className="col-span-2">
         <button
