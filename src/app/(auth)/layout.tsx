@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import AuthTabs from "./components/AuthTabs/AuthTabs";
 import Branding from "./components/Branding/Branding";
 
@@ -8,6 +9,7 @@ function AuthLayout({ children }: { children: React.ReactNode }) {
       <div className="mt-10 px-24 mb-24">
         <AuthTabs>{children}</AuthTabs>
       </div>
+      <Toaster />
     </div>
   );
 }

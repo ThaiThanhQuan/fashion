@@ -1,21 +1,64 @@
+'use client'
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { authService} from '@/src/services';
+import { toast } from "sonner";
+import { setTokens } from "@/src/lib/auth.helper";
 
 function LoginForm() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      const res = await authService.login({
+        username,
+        password,
+      });
+
+      if (!res?.result) {
+        toast.error("Tài khoản hoặc mật khẩu không chính xác!", {
+          position: "top-right",
+          duration: 3000,
+        });
+        return;
+      }
+
+      setTokens(res.result.token, res.result.refreshToken);
+
+      router.push("/");
+      router.refresh()
+
+    } catch (err) {
+      toast.error("Hệ thống đang gặp sự cố, vui lòng thử lại sau!", {
+        position: "top-right",
+        duration: 3000,
+      });
+    }
+  };
+
+
   return (
-    <form action={"#"} className="space-y-6">
+    <form onSubmit={handleSubmit} action={"#"} className="space-y-6">
       <div>
         <label
-          htmlFor="email"
+          htmlFor="username"
           className="block text-[10px] font-bold tracking-[0.2em] uppercase text-[#5f5f5f] mb-2 "
         >
-          Địa Chỉ Email
+          Username
         </label>
 
         <input
           className="w-full bg-transparent outline-none border-t-0 border-x-0 border-b border-[#b2b2b133] py-3 text-[#323233] placeholder:text-[#5f5f5f]/40 focus:ring-0 focus:border-(--primary-color) transition-all"
-          type="email"
-          id="email"
-          placeholder="email@example.com"
+          type="username"
+          id="username"
+          placeholder="username...."
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
 
@@ -32,10 +75,12 @@ function LoginForm() {
           type="password"
           id="password"
           placeholder="••••••••"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
-      <div className="flex justify-between items-center pt-2">
+      <div className="flex items-center justify-between pt-2">
         <label
           htmlFor="remember-me"
           className="flex items-center gap-3 cursor-pointer"

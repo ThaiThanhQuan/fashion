@@ -7,7 +7,7 @@ export const authService = {
     login: (body: { username: string, password: string }) =>
         sendRequest<IBackendRes<IAuth>>({ url: `${API_URL}/auth/login`, method: 'POST', body }),
 
-    register: (body: { username: string, password: string, email: string }) =>
+    register: (body: { username: string, password: string, email: string, dob: string, gender: boolean}) =>
         sendRequest<IBackendRes<IUser>>({ url: `${API_URL}/auth/register`, method: 'POST', body }),
 
     logout: (body: { token: string }) =>
