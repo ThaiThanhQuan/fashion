@@ -1,23 +1,22 @@
-import { IProductItem } from "@/src/app/(public)/product/data";
-import Link from "next/link";
+import { IProduct } from "@/src/types";
 
-interface ITrendProductProps {
-  item: IProductItem;
+interface IProps {
+  product: IProduct
   className?: string;
 }
 
-function ProductInfo({ item, className }: ITrendProductProps) {
+function ProductInfo({ product, className }: IProps) {
   return (
     <div>
-      <div className="flex justify-between items-center mb-1">
-        <p className="text-[16px] font-semibold text-[#1a1a1a]">{item.title}</p>
+      <div className="flex items-center justify-between mb-1">
+        <p className="text-[16px] font-semibold text-[#1a1a1a]">{product.title}</p>
         <span className={`text-[14px]  ${className}`}>
-          ${item.price.toLocaleString("de-DE")}
+          ${product.price.toLocaleString("de-DE")}
         </span>
       </div>
 
       <p className="text-[11px] uppercase tracking-[2px] text-gray-400">
-        {item.label}
+        {product.label}
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import { ProductMockData } from "../data";
+import { productService } from "@/src/services";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import ProductDetailItem from "./components/ProductDetailItem/ProductDetailItem";
 
@@ -9,7 +9,8 @@ export default async function ProductDetailPage({
 }) {
   const { slug } = await params;
 
-  const product = ProductMockData.find((item) => item.slug === slug);
+  const product = await productService.getBySlug(slug);
+
 
   if (!product) {
     return <div>Sản phẩm không tồn tại</div>;

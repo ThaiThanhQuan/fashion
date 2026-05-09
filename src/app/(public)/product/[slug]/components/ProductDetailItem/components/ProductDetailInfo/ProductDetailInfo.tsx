@@ -2,13 +2,13 @@
 import { useState } from "react";
 import { useCartStore } from "@/src/store/useCartStore";
 import { useRouter } from "next/navigation";
-import { IProductItem } from "@/src/app/(public)/product/data";
 import SizeSelector from "@/src/components/SizeSelector/SizeSelector";
 import { Heart, Plus } from "lucide-react";
 import { toast } from "sonner";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  product: IProductItem;
+  product: IProduct;
 }
 function ProductDetailInfo({ product }: IProps) {
   const [selectedSize, setSelectedSize] = useState("");

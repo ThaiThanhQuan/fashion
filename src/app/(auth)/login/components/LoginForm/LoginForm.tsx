@@ -4,12 +4,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authService} from '@/src/services';
 import { toast } from "sonner";
-import { setTokens } from "@/src/lib/auth.helper";
+import { useAuthStore } from "@/src/store/useAuthStore";
 
 function LoginForm() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +29,7 @@ function LoginForm() {
         return;
       }
 
-      setTokens(res.result.token, res.result.refreshToken);
+      login(res.result.token, res.result.refreshToken);
 
       router.push("/");
       router.refresh()

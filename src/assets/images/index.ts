@@ -23,6 +23,8 @@ import category3 from "./store/category3.png";
 import login from "./store/login.png";
 import bg_author from "./store/bg_author.png";
 import heroservice from "./store/heroservice.png";
+import brandhero from "./store/brandhero.png";
+
 export const images = {
   brand,
   collection,
@@ -49,4 +51,5 @@ export const images = {
   login,
   bg_author,
   heroservice,
+  brandhero
 };

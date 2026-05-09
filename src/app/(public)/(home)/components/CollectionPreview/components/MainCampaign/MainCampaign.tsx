@@ -1,26 +1,22 @@
-import { images } from "@/src/assets/images";
+import { ICollection } from "@/src/types";
 import Image from "next/image";
 
-function MainCampaign() {
+interface IProps {
+  collection: ICollection
+}
+
+function MainCampaign({collection}:  IProps) {
   return (
     <div className="relative cursor-pointer group overflow-hidden">
-      {/* <Image
-        src={images.collection}
-        alt="Spring/Summer 2024 Collection"
+      <Image
+        src={collection.thumbnail}
+        alt={collection.title}
         width={606}
         height={758}
         priority
         className="object-contain w-full h-165 transition-transform duration-1000 ease-out group-hover:scale-105"
-      /> */}
-
-      <video
-        src="/videos/fashion.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-165 object-contain transition-transform duration-1000 ease-out group-hover:scale-105"
       />
+
     </div>
   );
 }

@@ -8,6 +8,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useIsMounted } from "@/src/hooks/useIsMounted";
+import { getAccessToken } from "@/src/lib/auth.helper";
+import { authService } from "@/src/services";
+import { useAuthStore } from "@/src/store/useAuthStore";
 import { Handbag, Heart, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,8 +19,22 @@ function Actions() {
   const router = useRouter();
   const pathname = usePathname();
   const isMounted = useIsMounted();
-  const actions = {
-    user: [
+  const { logout, isLoggedIn } = useAuthStore();
+  
+  const handleLogout = async () => {
+      try {
+          const token = getAccessToken();
+          if (token) await authService.logout({ token });
+      } catch (err) {
+          console.error(err);
+      } finally {
+          logout();          
+          router.push("/");
+          router.refresh();
+      }
+  };
+
+  const actions = [
       {
         label: "Thông tin cá nhân",
         href: "/profile/order-history",
@@ -26,19 +43,7 @@ function Actions() {
         label: "Đơn hàng của tôi",
         href: "/order",
       },
-    ],
-
-    auth: [
-      {
-        label: "Đăng nhập",
-        href: "/login",
-      },
-      {
-        label: "Đăng xuất",
-        href: "/",
-      },
-    ],
-  };
+    ]
 
   const actionItems = [
     {
@@ -60,7 +65,7 @@ function Actions() {
         <input
           type="search"
           placeholder="SEARCH"
-          onFocus={() => router.push("/product")} // ← click vào là navigate luôn
+          onFocus={() => router.push("/product")}
           className="w-48 h-8 border-b border-gray-300 focus:border-black outline-none text-[11px] tracking-[0.2em] transition-all placeholder:text-gray-400"
         />
       </div>
@@ -90,7 +95,7 @@ function Actions() {
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <button
-              className="flex items-center hover:text-black transition-colors cursor-pointer"
+              className="flex items-center transition-colors cursor-pointer hover:text-black"
               aria-controls="none"
             >
               <User size={20} strokeWidth={1.5} />
@@ -106,27 +111,35 @@ function Actions() {
               <DropdownMenuLabel className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#5f5f5f] px-3 py-2">
                 Tài khoản
               </DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-[#f0f0f0]" />
-              {actions.user.map((item, index) => (
-                <Link href={item.href} key={index}>
-                  <DropdownMenuItem className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer focus:bg-[#f5f5f5] focus:text-black outline-none transition-colors">
-                    {item.label}
-                  </DropdownMenuItem>
-                </Link>
-              ))}
+              {isLoggedIn && (
+                  <>
+                      <DropdownMenuSeparator className="bg-[#f0f0f0]" />
+                      {actions.map((item, index) => (
+                          <Link href={item.href} key={index}>
+                              <DropdownMenuItem className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer focus:bg-[#f5f5f5] focus:text-black outline-none transition-colors">
+                                  {item.label}
+                              </DropdownMenuItem>
+                          </Link>
+                      ))}
+                  </>
+              )}
 
               <DropdownMenuSeparator className="bg-[#f0f0f0]" />
 
-              {actions.auth.map((item, index) => (
-                <Link href={item.href} key={index}>
-                  <DropdownMenuItem
-                    key={index}
+              {isLoggedIn ? (
+                <DropdownMenuItem
+                    onClick={handleLogout}
                     className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer outline-none transition-colors focus:bg-[#f5f5f5] focus:text-black"
-                  >
-                    {item.label}
-                  </DropdownMenuItem>
+                >
+                    Đăng xuất
+                </DropdownMenuItem>
+            ) : (
+                <Link href="/login">
+                    <DropdownMenuItem className="text-[10px] uppercase tracking-widest px-3 py-3 cursor-pointer outline-none transition-colors focus:bg-[#f5f5f5] focus:text-black">
+                        Đăng nhập
+                    </DropdownMenuItem>
                 </Link>
-              ))}
+            )}
             </DropdownMenuContent>
           )}
         </DropdownMenu>

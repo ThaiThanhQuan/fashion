@@ -7,6 +7,9 @@ export const productService = {
     filter: (queryParams?: IProductFilter) =>
         sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product`, method: 'GET', queryParams }),
 
+    getAll: (queryParams?: IPageable) =>
+        sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product`, method: 'GET', queryParams }),
+
     getById: (id: string) =>
         sendRequest<IBackendRes<IProduct>>({ url: `${API_URL}/product/${id}`, method: 'GET' }),
 
@@ -16,6 +19,9 @@ export const productService = {
     getRelated: (productId: string, queryParams?: IPageable) =>
         sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product/${productId}/related`, method: 'GET', queryParams }),
 
+    getFeatured: (queryParams?: IPageable) =>
+        sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product/feature`, method: 'GET', queryParams }),
+
     create: (body: FormData) =>
         sendRequestFile<IBackendRes<IProduct>>({ url: `${API_URL}/product`, method: 'POST', body }),
 
@@ -24,4 +30,11 @@ export const productService = {
 
     delete: (id: string) =>
         sendRequest<IBackendRes<void>>({ url: `${API_URL}/product/${id}`, method: 'DELETE' }),
+
+    getBestSeller: (queryParams?: IPageable) =>
+        sendRequest<IBackendRes<IPageResponse<IProduct>>>({
+            url: `${API_URL}/product/best-seller`,
+            method: 'GET',
+            queryParams
+        }),
 }

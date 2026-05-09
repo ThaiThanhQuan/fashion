@@ -20,7 +20,7 @@ export interface IProduct {
     active: boolean
     featured: boolean
     categoryId: string
-    thumbnail: string
+    thumbnail?: string
     createdAt: string
 }
 

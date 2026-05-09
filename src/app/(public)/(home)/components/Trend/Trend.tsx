@@ -1,7 +1,12 @@
-import { ProductMockData } from "../../../product/data";
+import { productService } from "@/src/services";
 import TrendProduct from "./components/TrendProduct/TrendProduct";
 
-function Trend() {
+async function Trend() {
+  const res = await productService.getFeatured({ page: 0, size: 4 });
+  const products = res?.result?.content ?? [];
+
+  console.log('products: ',products)
+
   return (
     <div className=" py-(--padding-y) bg-[#f6f3f2]">
       <div className="container">
@@ -13,8 +18,8 @@ function Trend() {
       </div>
 
       <div className="grid grid-cols-4 gap-2 px-(--padding-x)">
-        {ProductMockData.slice(0, 4).map((item) => (
-          <TrendProduct key={item.id} item={item} />
+        {products.map((item) => (
+          <TrendProduct key={item.id} product={item} />
         ))}
       </div>
     </div>

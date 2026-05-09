@@ -1,9 +1,9 @@
-import { IProductItem } from "../../../data";
+import { IProduct } from "@/src/types";
 import ProductDetailGallery from "./components/ProductDetailGallery/ProductDetailGallery";
 import ProductDetailInfo from "./components/ProductDetailInfo/ProductDetailInfo";
 
 interface IProps {
-  product: IProductItem;
+  product: IProduct;
 }
 function ProductDetailItem({ product }: IProps) {
   return (

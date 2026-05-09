@@ -1,5 +1,5 @@
 import { sendRequest, sendRequestFile } from "../lib/api";
-import { IBackendRes, ICollection, ICollectionFilter, IPageResponse } from "../types";
+import { IBackendRes, ICollection, ICollectionFilter, IPageable, IPageResponse } from "../types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -7,6 +7,8 @@ export const collectionService = {
     filter: (queryParams?: ICollectionFilter) =>
         sendRequest<IBackendRes<IPageResponse<ICollection>>>({ url: `${API_URL}/collections`, method: 'GET', queryParams }),
 
+    getAll: (queryParams?: IPageable) =>
+            sendRequest<IBackendRes<IPageResponse<ICollection>>>({ url: `${API_URL}/collections`, method: 'GET', queryParams }),
     getById: (id: string) =>
         sendRequest<IBackendRes<ICollection>>({ url: `${API_URL}/collections/${id}`, method: 'GET' }),
 

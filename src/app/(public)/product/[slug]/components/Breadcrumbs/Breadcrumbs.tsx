@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { IProductItem } from "../../../data";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  product: IProductItem;
+  product: IProduct;
 }
 
 function Breadcrumbs({ product }: IProps) {

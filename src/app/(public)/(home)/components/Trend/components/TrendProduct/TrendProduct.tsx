@@ -1,33 +1,37 @@
 import Image from "next/image";
 import ProductInfo from "@/src/components/ProductInfo/ProductInfo";
 import ButtonAddProduct from "@/src/components/ButtonAddProduct/ButtonAddProduct";
-import { IProductItem } from "@/src/app/(public)/product/data";
 import Link from "next/link";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  item: IProductItem;
+  product: IProduct;
 }
 
-function TrendProduct({ item }: IProps) {
+function TrendProduct({ product }: IProps) {
   return (
-    <div className="bg-white p-8 group cursor-pointer transition-all duration-300 hover:-translate-y-2">
+    <div className="p-8 transition-all duration-300 bg-white cursor-pointer group hover:-translate-y-2">
       {/* Image */}
 
-      <Link href={`/product/${item.slug}`}>
+      <Link href={`/product/${product.slug}`}>
         <div className="relative w-77.25 h-96.5 mb-6">
-          <Image
-            src={item.thumbnail}
-            fill
-            priority
-            sizes="25vw"
-            alt={item.title}
-            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-          />
+          {product.thumbnail ? (
+            <Image
+              src={product.thumbnail}
+              fill
+              priority
+              sizes="25vw"
+              alt={product.title}
+              className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+          ) : (
+            <div className="h-full w-full bg-[#e6e1df]" />
+          )}
 
           <ButtonAddProduct />
         </div>
 
-        <ProductInfo item={item} className="text-gray-600" />
+        <ProductInfo product={product}  />
       </Link>
     </div>
   );

@@ -6,11 +6,11 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { IProductItem } from "@/src/app/(public)/product/data";
 import { useEffect, useState } from "react";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  product: IProductItem;
+  product: IProduct;
 }
 function ProductDetailGallery({ product }: IProps) {
   const [api, setApi] = useState<CarouselApi>();

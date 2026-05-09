@@ -2,14 +2,13 @@ function ProductHeader() {
   return (
     <div className="container mb-16">
       <h1 className="mb-4 text-5xl font-extrabold tracking-tighter font-headline text-[#323233]">
-        SS24 Thời Trang May Sẵn
+        NEW SEASON / SS24
       </h1>
 
       <div className="flex items-end justify-between">
         <p className="max-w-lg leading-relaxed font-body text-[#5f5f5f] ">
-          Sự đối thoại giữa những kiểu dáng kiến trúc và các loại vải mềm mại.
-          Được tuyển chọn cho những người theo đuổi phong cách tối giản hiện
-          đại, coi trọng sự chính xác và tay nghề thủ công.
+            Tối giản trong thiết kế, khác biệt trong hiện diện.
+            Một bộ sưu tập được tạo nên cho thế hệ mang bản sắc riêng.
         </p>
 
         <div className="flex items-center gap-8 pb-2 border-b border-outline-variant/20">

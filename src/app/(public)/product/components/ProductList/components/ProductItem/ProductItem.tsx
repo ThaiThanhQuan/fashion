@@ -3,32 +3,32 @@ import ProductInfo from "@/src/components/ProductInfo/ProductInfo";
 import Image from "next/image";
 import ButtonAddProduct from "@/src/components/ButtonAddProduct/ButtonAddProduct";
 import { Heart } from "lucide-react";
-import { IProductItem } from "../../data";
 import Link from "next/link";
 import { useWishlistStore } from "@/src/store/useWishlistStore";
 import { toast } from "sonner";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  item: IProductItem;
+  product: IProduct;
 }
 
-function ProductItem({ item }: IProps) {
+function ProductItem({ product }: IProps) {
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
 
-  const isLiked = wishlist.some((wishItem) => wishItem.id === item.id);
+  const isLiked = wishlist.some((wishItem) => wishItem.id === product.id);
 
   const handleLike = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (isLiked) {
-      removeFromWishlist(item.id);
+      removeFromWishlist(product.id);
       toast.error("Đã xóa khỏi danh sách yêu thích", {
         position: "top-center",
         duration: 3000,
       });
     } else {
-      addToWishlist(item);
+      addToWishlist(product);
       toast.success("Đã thêm vào danh sách yêu thích", {
         position: "top-center",
         duration: 3000,
@@ -38,9 +38,9 @@ function ProductItem({ item }: IProps) {
   return (
     <div className="relative group flex flex-col cursor-pointer ">
       <div className="mb-8 relative aspect-3/4 overflow-hidden ">
-        <Link href={`/product/${item.slug}`}>
+        <Link href={`/product/${product.slug}`}>
           <Image
-            src={item.thumbnail}
+            src={product.thumbnail}
             fill
             alt=""
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -63,7 +63,7 @@ function ProductItem({ item }: IProps) {
         </button>
       </div>
 
-      <ProductInfo item={item} className="text-(--primary-color)" />
+      <ProductInfo product={product} className="text-(--primary-color)" />
     </div>
   );
 }

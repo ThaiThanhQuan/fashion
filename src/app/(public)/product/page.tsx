@@ -1,11 +1,13 @@
 import FilterSection from "./components/FilterSection/FilterSection";
-import ViewMore from "./components/ViewMore/ViewMore";
-import { ProductMockData } from "./data";
 import ProductHeader from "./components/ProductsHeader/ProductHeader";
-import ProductItem from "./components/ProductItem/ProductItem";
-import ButtonViewMore from "@/src/components/ButtonViewMore/ButtonViewMore";
+import { productService } from "@/src/services";
+import ProductList from "./components/ProductList/ProductList";
 
-function CollectionsPage() {
+async function CollectionsPage() {
+    const res = await productService.getAll({ page: 0, size: 4 });
+    const products = res?.result?.content ?? [];
+    const totalElements = res?.result?.totalElements ?? 0;
+
   return (
     <div className="pt-2.5">
       <ProductHeader />
@@ -15,20 +17,11 @@ function CollectionsPage() {
           <FilterSection />
         </div>
         <div className="col-span-9">
-          <div className="grid grid-cols-3 gap-x-12 gap-y-24 [&>div:nth-child(3n-1)]:translate-y-12">
-            {ProductMockData.map((item) => (
-              <ProductItem key={item.id} item={item} />
-            ))}
-          </div>
+             <ProductList
+                  initialProducts={products}
+                  totalElements={totalElements}
+              />
         </div>
-      </div>
-
-      <div className="container flex flex-col items-center py-(--padding-y) text-center">
-        <ButtonViewMore
-          className="hover:bg-[#323233] hover:text-white"
-          title="Xem thêm sản phẩm"
-        />
-        <ViewMore />
       </div>
     </div>
   );

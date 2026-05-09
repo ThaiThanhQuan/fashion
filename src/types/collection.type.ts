@@ -1,3 +1,4 @@
+import { IArtist } from "./artist.type"
 import { IPageable } from "./common.type"
 import { IProduct } from "./product.type"
 
@@ -18,9 +19,9 @@ export interface ICollection {
     designIdeas: string
     description: string
     thumbnail: string
-    seasonId: string
-    categoryCollectionId: string
-    artistId: string
+    season: ISeason
+    categoryCollection: ICategoryCollection
+    artistId: IArtist
     products: IProduct[]
 }
 
