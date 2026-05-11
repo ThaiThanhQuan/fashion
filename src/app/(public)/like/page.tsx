@@ -4,7 +4,7 @@ import LikeProductsGrid from "./components/LikeProductsGrid/LikeProductsGrid";
 
 function LikePage() {
   return (
-    <div className="p-16">
+    <div className="px-16 py-3">
       <LikeHeader />
       <LikeProductsGrid />
       <NewCollection />

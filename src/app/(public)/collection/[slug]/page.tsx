@@ -1,4 +1,4 @@
-import { COLLECTIONS_DATA } from "../data";
+import { collectionService } from "@/src/services";
 import CollectionProduct from "./components/CollectionProduct/CollectionProduct";
 import DesignIdea from "./components/DesignIdea/DesignIdea";
 import HeroCollection from "./components/HeroCollection/HeroCollection";
@@ -6,7 +6,9 @@ import HeroCollection from "./components/HeroCollection/HeroCollection";
 async function CollectionDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
-  const collection = COLLECTIONS_DATA.find((item) => item.slug === slug);
+  const res = await collectionService.getBySlug(slug);
+  const collection = res.result
+  console.log('collection: ',collection)
 
   if (!collection) {
     return <div>Sản phẩm không tồn tại</div>;

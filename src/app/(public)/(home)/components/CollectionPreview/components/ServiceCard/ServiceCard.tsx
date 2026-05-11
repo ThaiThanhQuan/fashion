@@ -7,7 +7,7 @@ interface IProps {
 
 function ServiceCard({service}: IProps) {
   return (
-    <div className="bg-[#f0eded] p-12">
+    <div className="bg-[#f0eded] p-10">
       <h4 className="mb-4 text-xl font-bold font-headline">
         {service.title}
       </h4>

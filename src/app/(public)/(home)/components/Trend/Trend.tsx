@@ -10,7 +10,7 @@ async function Trend() {
   return (
     <div className=" py-(--padding-y) bg-[#f6f3f2]">
       <div className="container">
-        <div className="mb-20">
+        <div className="mb-10">
           <h2 className="text-5xl font-extrabold tracking-tighter uppercase">
             Xu Hướng
           </h2>

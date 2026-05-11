@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { ICollectionItem } from "../../../data";
 import Image from "next/image";
 import ButtonAddProduct from "@/src/components/ButtonAddProduct/ButtonAddProduct";
 import {
@@ -11,9 +10,10 @@ import {
 } from "@/components/ui/carousel";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ICollection } from "@/src/types";
 
 interface IProps {
-  collection: ICollectionItem;
+  collection: ICollection;
 }
 
 function CollectionProduct({ collection }: IProps) {
@@ -21,7 +21,7 @@ function CollectionProduct({ collection }: IProps) {
 
   return (
     <div className="pb-(--padding-y) ">
-      <div className="mb-16 flex justify-between gap-6 items-end">
+      <div className="flex items-end justify-between gap-6 mb-16">
         <div>
           <h2 className="text-4xl font-bold tracking-tight">
             Sản Phẩm Từ Bộ Sưu Tập
@@ -45,24 +45,28 @@ function CollectionProduct({ collection }: IProps) {
           align: "start",
           slidesToScroll: 1,
         }}
-        className="w-full relative "
+        className="relative w-full "
       >
         <CarouselContent className="-ml-6">
-          {collection.product.map((product, index) => (
+          {collection.products.map((product, index) => (
             <CarouselItem key={index} className="pl-6 basis-1/4">
               <Link href={`/product/${product.slug}`}>
-                <div className="relative w-full aspect-3/4 mb-6 group ">
-                  <Image
+                <div className="relative w-full mb-6 aspect-3/4 group ">
+                 {product.thumbnail ? (
+                   <Image
                     src={product.thumbnail}
                     alt={product.title}
                     fill
                     className="object-cover duration-1000 ease-out group-hover:scale-105 "
                   />
+                 ): (
+                   <div className="w-full h-full bg-[#e6e1df]" />
+                 )}
 
                   <ButtonAddProduct />
                 </div>
 
-                <h3 className="text-sm font-bold tracking-tight mb-1">
+                <h3 className="mb-1 text-sm font-bold tracking-tight">
                   {product.title}
                 </h3>
                 <p className="text-[#5f5f5f] text-sm">

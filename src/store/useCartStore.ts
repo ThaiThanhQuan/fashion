@@ -1,15 +1,15 @@
 import { create } from "zustand";
-import { IProductItem } from "@/src/app/(public)/product/data";
+import { IProduct } from "../types";
 
 export interface ICartItem {
-  product: IProductItem;
+  product: IProduct;
   size: string;
   quantity: number;
 }
 
 export interface ICartStore {
   items: ICartItem[];
-  addItem: (product: IProductItem, size: string) => void;
+  addItem: (product: IProduct, size: string) => void;
   removeItem: (productId: string, size: string) => void;
   increment: (productId: string, size: string) => void;
   decrement: (productId: string, size: string) => void;

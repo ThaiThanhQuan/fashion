@@ -27,8 +27,8 @@ function ProductDetailGallery({ product }: IProps) {
   return (
     <div className="flex gap-6">
       {/* BÊN TRÁI: Danh sách ảnh nhỏ (Thumbnail) */}
-      <div className="flex flex-col gap-3 w-20 ">
-        {product.gallery.map((src, index) => (
+      <div className="flex flex-col w-20 gap-3 ">
+        {(product.images ?? []).map((src, index) => (
           <div
             key={index}
             onClick={() => api?.scrollTo(index)} // Click là trượt ảnh lớn
@@ -46,9 +46,9 @@ function ProductDetailGallery({ product }: IProps) {
       {/* BÊN PHẢI: Ảnh lớn dùng Shadcn Carousel */}
       <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
         <CarouselContent>
-          {product.gallery.map((src, index) => (
+          {(product.images ?? []).map((src, index) => (
             <CarouselItem key={index}>
-              <div className="relative aspect-4/3 w-full ">
+              <div className="relative w-full aspect-4/3 ">
                 <Image
                   src={src}
                   alt="product"

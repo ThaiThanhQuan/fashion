@@ -21,6 +21,7 @@ export interface IProduct {
     featured: boolean
     categoryId: string
     thumbnail?: string
+    images?: string[]
     createdAt: string
 }
 

@@ -2,24 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useWishlistStore } from "@/src/store/useWishlistStore";
-import { IProductItem } from "../../../product/data";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  item: IProductItem;
+  item: IProduct;
 }
 
 function LikeProductItem({ item }: IProps) {
   const { removeFromWishlist } = useWishlistStore();
 
   return (
-    <div className="relative group cursor-pointer ">
+    <div className="relative cursor-pointer group ">
       <button
         onClick={() => removeFromWishlist(item.id)}
         className="absolute top-2 right-2 z-10 p-2 bg-[#fcf9f866]  text-[#323233] hover:text-[#9f403d] transition-colors cursor-pointer"
       >
         <X size={24} />
       </button>
-      <div className="mb-4 relative overflow-hidden">
+      <div className="relative mb-4 overflow-hidden">
         <Link href={`/product/${item.slug}`}>
           <Image
             src={item.thumbnail}
@@ -31,7 +31,7 @@ function LikeProductItem({ item }: IProps) {
         </Link>
       </div>
 
-      <div className=" mb-4">
+      <div className="mb-4 ">
         <h3 className="text-[16px] tracking-tight uppercase ">{item.title}</h3>
         <p className="text-[15px]font-medium mt-1 text-(--primary-color)">
           ${item.price.toLocaleString("de-DE")}

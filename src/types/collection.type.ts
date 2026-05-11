@@ -21,7 +21,7 @@ export interface ICollection {
     thumbnail: string
     season: ISeason
     categoryCollection: ICategoryCollection
-    artistId: IArtist
+    artist: IArtist
     products: IProduct[]
 }
 

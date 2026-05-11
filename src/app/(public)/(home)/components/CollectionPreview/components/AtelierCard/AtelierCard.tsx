@@ -3,14 +3,14 @@ import Image from "next/image";
 
 function AtelierCard() {
   return (
-    <div className="relative  group cursor-pointer">
+    <div className="relative cursor-pointer group">
       <Image
         src={images.fabric}
         alt="Atelier Fabric Texture"
-        width={300}
-        height={300}
+        width={260}
+        height={260}
         priority
-        className="object-cover w-full h-75 transition-transform duration-1000 ease-out group-hover:scale-105"
+        className="object-cover w-full transition-transform duration-1000 ease-out h-35 group-hover:scale-105"
       />
     </div>
   );

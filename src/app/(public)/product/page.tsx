@@ -9,7 +9,7 @@ async function CollectionsPage() {
     const totalElements = res?.result?.totalElements ?? 0;
 
   return (
-    <div className="pt-2.5">
+    <div>
       <ProductHeader />
 
       <div className="px-(--padding-x) grid grid-cols-12 gap-10">

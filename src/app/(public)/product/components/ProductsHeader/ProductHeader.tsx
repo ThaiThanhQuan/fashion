@@ -1,6 +1,6 @@
 function ProductHeader() {
   return (
-    <div className="container mb-16">
+    <div className="container mb-7">
       <h1 className="mb-4 text-5xl font-extrabold tracking-tighter font-headline text-[#323233]">
         NEW SEASON / SS24
       </h1>

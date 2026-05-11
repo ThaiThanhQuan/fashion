@@ -1,9 +1,9 @@
 import { images } from "@/src/assets/images";
 import Image from "next/image";
-import { ICollectionItem } from "../../../data";
+import { ICollection } from "@/src/types";
 
 interface IProps {
-  collection: ICollectionItem;
+  collection: ICollection;
 }
 
 function DesignIdea({ collection }: IProps) {
@@ -21,8 +21,8 @@ function DesignIdea({ collection }: IProps) {
           </div>
           <div className="absolute bottom-0 right-0 w-[60%] aspect-3/4 border-8 border-[#fcf9f8] z-20">
             <Image
-              src={collection.author_img}
-              alt={collection.author}
+              src={collection.artist.thumbnail}
+              alt={collection.artist.name}
               fill
               className="object-cover"
             />
@@ -30,20 +30,18 @@ function DesignIdea({ collection }: IProps) {
         </div>
 
         <div className="flex flex-col justify-center">
-          <h2 className="text-4xl font-bold tracking-tight mb-8">
+          <h2 className="mb-8 text-4xl font-bold tracking-tight">
             Cảm Hứng Thiết Kế
           </h2>
 
           <div className="space-y-6 text-[#5f5f5f] leading-loose text-lg">
-            {collection.design_ideas.map((idea, index) => (
-              <p key={index}>{idea}</p>
-            ))}
+              <p >{collection.designIdeas}</p>
           </div>
 
           <div className="pt-8 flex items-center gap-4 text-[#323233]">
             <span className="h-px w-12 bg-(--primary-color)" />
-            <span className="font-headline font-bold italic">
-              {collection.author}
+            <span className="italic font-bold font-headline">
+              {collection.artist.name}
             </span>
           </div>
         </div>
