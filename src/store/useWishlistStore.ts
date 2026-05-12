@@ -8,10 +8,13 @@ interface WishlistStore {
     addToWishlist: (productId: string) => Promise<void>;
     removeFromWishlist: (productId: string) => Promise<void>;
     isLiked: (productId: string) => boolean;
+    clearWishlist: () => void; 
 }
 
 export const useWishlistStore = create<WishlistStore>((set, get) => ({
     wishlist: [],
+
+    clearWishlist: () => set({ wishlist: [] }),
 
     fetchWishlist: async () => {
         try {

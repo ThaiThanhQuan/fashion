@@ -1,6 +1,6 @@
 'use client'
 import ButtonViewMore from "@/src/components/ButtonViewMore/ButtonViewMore";
-import ProductItem from "./components/ProductItem/ProductItem";
+import ProductItem from "../../../../../components/ProductItem/ProductItem";
 import ViewMore from "./components/ViewMore/ViewMore";
 import { IProduct } from "@/src/types";
 import { useState } from "react";

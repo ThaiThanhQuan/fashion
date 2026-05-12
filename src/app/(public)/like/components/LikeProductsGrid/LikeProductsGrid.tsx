@@ -2,7 +2,7 @@
 import LikeEmpty from "./components/LikeEmpty/LikeEmpty";
 import { useWishlistStore } from "@/src/store/useWishlistStore";
 import { useEffect } from "react";
-import ProductItem from "../../../product/components/ProductList/components/ProductItem/ProductItem";
+import ProductItem from "../../../../../components/ProductItem/ProductItem";
 
 
 function LikeProductsGrid() {

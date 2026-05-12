@@ -1,10 +1,14 @@
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
-import { COLLECTIONS_DATA } from "../../../collection/data";
 import CollectionPreviewProduct from "./components/CollectionPreviewProduct/CollectionPreviewProduct";
+import { ICollection } from "@/src/types";
 
-function NewCollection() {
-  const collection = COLLECTIONS_DATA[0];
+interface IProps {
+  collection: ICollection
+}
+
+function NewCollection({collection}: IProps) {
+
   return (
     <div className="container py-(--padding-y)">
       <div className="grid grid-cols-12 gap-8">
@@ -21,13 +25,13 @@ function NewCollection() {
               href={"/collection"}
               className="inline-block border-b border-[#323233] pb-1 text-sm font-bold tracking-widest uppercase hover:text-(--primary-color) hover:border-(--primary-color) transition-all"
             >
-              Xem Bộ Sưu Tập Mùa Hè
+              Xem Bộ Sưu Tập Mới nhất
             </Link>
           </div>
         </div>
 
         <div className="col-span-4">
-          <CollectionPreviewProduct product={collection.product[0]} />
+          <CollectionPreviewProduct product={collection.products[0]} />
         </div>
       </div>
     </div>

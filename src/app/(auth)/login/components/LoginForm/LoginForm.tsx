@@ -44,7 +44,7 @@ function LoginForm() {
 
 
   return (
-    <form onSubmit={handleSubmit} action={"#"} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label
           htmlFor="username"
@@ -105,7 +105,7 @@ function LoginForm() {
             Chưa có tài khoản?
           </Link>
           <Link
-            href="#"
+            href="/verify-email"
             className="text-xs uppercase tracking-widest text-(--primary-color) hover:opacity-70 transition-opacity"
           >
             Quên mật khẩu?

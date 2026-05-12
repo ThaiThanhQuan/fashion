@@ -9,7 +9,7 @@ export const handleRefreshToken = async (): Promise<boolean> => {
     if (!refreshToken) return false;
 
    try {
-        const res = await authService.refreshToken({ token: refreshToken });
+        const res = await authService.refreshToken({ refreshToken: refreshToken });
         if (!res?.result) return false;
 
         // Lưu token mới vào cookie

@@ -4,8 +4,6 @@ import { useWishlistStore } from "@/src/store/useWishlistStore";
 function LikeHeader() {
   const {wishlist} = useWishlistStore()
 
-  console.log("wishlist: ",wishlist)
-
   return (
     <div className="mb-5">
       <h1 className="text-4xl uppercase font-bold tracking-tight text-[#323233] mb-6">

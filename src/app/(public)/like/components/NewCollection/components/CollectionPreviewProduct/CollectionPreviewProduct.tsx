@@ -1,23 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IProductItem } from "../../../../../product/data";
+import { IProduct } from "@/src/types";
 
 interface IProps {
-  product: IProductItem;
+  product: IProduct;
 }
 
 function CollectionPreviewProduct({ product }: IProps) {
+
   return (
     <div key={product.id} className="relative group cursor-pointer ">
       <div className="mb-4 relative overflow-hidden">
         <Link href={`/product/${product.slug}`}>
-          <Image
+          {product.thumbnail ? ( <Image
             src={product.thumbnail}
             width={400}
             height={400}
             alt=""
             className="object-cover w-full duration-1000 ease-out group-hover:scale-105 "
-          />
+          /> ) :  (
+            <div className="h-full w-full bg-[#e6e1df]" />
+          )}
         </Link>
       </div>
 

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import Cookies from 'js-cookie';
 import { authService } from '../services';
+import { useWishlistStore } from './useWishlistStore';
 
 interface AuthStore {
     isLoggedIn: boolean
@@ -16,12 +17,14 @@ export const useAuthStore = create<AuthStore>((set) => ({
         Cookies.set("access_token", token, { expires: 1/24, secure: true, sameSite: 'strict' });
         Cookies.set("refresh_token", refreshToken, { expires: 1, secure: true, sameSite: 'strict' });
         set({ isLoggedIn: true });
+        useWishlistStore.getState().fetchWishlist(); 
     },
 
     logout: () => {
         Cookies.remove("access_token");
         Cookies.remove("refresh_token");
         set({ isLoggedIn: false });
+        useWishlistStore.getState().clearWishlist();
     },
 
      // Check khi app khởi động
@@ -38,7 +41,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         // Hết access token nhưng còn refresh token → refresh
         if (refreshToken) {
             try {
-                const res = await authService.refreshToken({ token: refreshToken });
+                const res = await authService.refreshToken({ refreshToken: refreshToken });
                 if (res?.result) {
                     Cookies.set("access_token", res.result.token, { expires: 1/24, secure: true, sameSite: 'strict' });
                     Cookies.set("refresh_token", res.result.refreshToken, { expires: 1, secure: true, sameSite: 'strict' });

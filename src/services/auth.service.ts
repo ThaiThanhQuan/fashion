@@ -13,6 +13,23 @@ export const authService = {
     logout: (body: { token: string }) =>
         sendRequest<IBackendRes<void>>({ url: `${API_URL}/auth/logout`, method: 'POST', body }),
 
-    refreshToken: (body: { token: string }) =>
+    refreshToken: (body: { refreshToken: string }) =>
         sendRequest<IBackendRes<IAuth>>({ url: `${API_URL}/auth/refresh`, method: 'POST', body }),
+
+    forgotPassword: (email: string) =>
+        sendRequest<IBackendRes<void>>({
+            url: `${API_URL}/auth/forgot-password`,
+            method: 'POST',
+            body: { email }
+        }),
+
+    resetPassword: (token: string, newPassword: string) =>
+    sendRequest<IBackendRes<void>>({
+        url: `${API_URL}/auth/reset-password`,
+        method: 'POST',
+        body: {
+            token,
+            newPassword
+        }
+    }),
 }
