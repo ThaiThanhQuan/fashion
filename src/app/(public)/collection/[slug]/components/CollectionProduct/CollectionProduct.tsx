@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ICollection } from "@/src/types";
+import ProductItem from "@/src/components/ProductItem/ProductItem";
 
 interface IProps {
   collection: ICollection;
@@ -18,6 +19,13 @@ interface IProps {
 
 function CollectionProduct({ collection }: IProps) {
   const [api, setApi] = useState<CarouselApi>();
+
+   const getBasis = () => {
+        if (collection.products.length === 1) return "basis-full";
+        if (collection.products.length === 2) return "basis-1/2";
+        if (collection.products.length === 3) return "basis-1/3";
+        return "basis-1/4"; 
+    };
 
   return (
     <div className="pb-(--padding-y) ">
@@ -41,7 +49,7 @@ function CollectionProduct({ collection }: IProps) {
       <Carousel
         setApi={setApi}
         opts={{
-          loop: true,
+          loop: collection.products.length > 4, 
           align: "start",
           slidesToScroll: 1,
         }}
@@ -49,46 +57,28 @@ function CollectionProduct({ collection }: IProps) {
       >
         <CarouselContent className="-ml-6">
           {collection.products.map((product, index) => (
-            <CarouselItem key={index} className="pl-6 basis-1/4">
-              <Link href={`/product/${product.slug}`}>
-                <div className="relative w-full mb-6 aspect-3/4 group ">
-                 {product.thumbnail ? (
-                   <Image
-                    src={product.thumbnail}
-                    alt={product.title}
-                    fill
-                    className="object-cover duration-1000 ease-out group-hover:scale-105 "
-                  />
-                 ): (
-                   <div className="w-full h-full bg-[#e6e1df]" />
-                 )}
-
-                  <ButtonAddProduct />
-                </div>
-
-                <h3 className="mb-1 text-sm font-bold tracking-tight">
-                  {product.title}
-                </h3>
-                <p className="text-[#5f5f5f] text-sm">
-                  ${product.price.toLocaleString("de-DE")}
-                </p>
-              </Link>
+            <CarouselItem key={index} className={`pl-6 ${getBasis()}`}>
+                <ProductItem product={product} />
             </CarouselItem>
           ))}
         </CarouselContent>
 
-        <button
-          onClick={() => api?.scrollPrev()}
-          className="absolute -left-15 top-[40%] z-50 rounded-none bg-[#f6f3f2]/80 hover:bg-[#f6f3f2] h-10 w-10 flex items-center justify-center cursor-pointer"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={() => api?.scrollNext()}
-          className="absolute -right-15 top-[40%] z-50 rounded-none bg-[#f6f3f2]/80 hover:bg-[#f6f3f2] h-10 w-10 flex items-center justify-center cursor-pointer"
-        >
-          <ChevronRight size={20} />
-        </button>
+        {collection.products.length > 4 && (    
+          <>
+            <button
+              onClick={() => api?.scrollPrev()}
+              className="absolute -left-15 top-[40%] z-50 rounded-none bg-[#f6f3f2]/80 hover:bg-[#f6f3f2] h-10 w-10 flex items-center justify-center cursor-pointer"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => api?.scrollNext()}
+              className="absolute -right-15 top-[40%] z-50 rounded-none bg-[#f6f3f2]/80 hover:bg-[#f6f3f2] h-10 w-10 flex items-center justify-center cursor-pointer"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </>
+        )}
       </Carousel>
     </div>
   );

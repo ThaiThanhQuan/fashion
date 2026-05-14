@@ -1,46 +1,53 @@
-import Link from "next/link";
-import { ProductMockData } from "../../../../data";
+'use client'
+import { ICategoryProduct } from "@/src/types";
+import { useEffect, useState } from "react";
+import { categoryProductService } from "@/src/services";
 
-function CategoryFilter() {
-  // 1. Đếm số lượng sản phẩm cho mỗi danh mục
-  const categoryCounts = ProductMockData.reduce(
-    (acc, item) => {
-      const name = item.category_product;
-      // Nếu đã có tên này thì +1, nếu chưa có thì gán bằng 1
-      acc[name] = (acc[name] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+interface IProps {
+    selected?: string;
+    onChange: (categoryId: string | undefined) => void;
+    onReset: () => void
+}
+function CategoryFilter({ selected, onChange,onReset }: IProps) {
 
-  // 2. Lấy danh sách tên danh mục duy nhất (không trùng lặp)
-  const uniqueCategoryNames = Object.keys(categoryCounts);
+  const [categories, setCategories] = useState<ICategoryProduct[]>([]);
+
+    useEffect(() => {
+        categoryProductService.getAll()
+            .then((res) => {
+              setCategories(res?.result ?? []);
+            })
+            .catch(console.error);
+    }, []);
+
+
 
   return (
     <div className="">
-      <h3 className="text-xs font-headline font-bold uppercase tracking-[0.2em] mb-6 text-[#323233]">
-        Danh mục
-      </h3>
+      <div className="flex items-center justify-between">
+         <h3 className="text-xs font-headline font-bold uppercase tracking-[0.2em] mb-6 text-[#323233]">
+          Danh mục
+        </h3>
+        <button onClick={onReset} className="text-xs font-headline font-bold uppercase tracking-[0.2em] mb-6 text-[#323233] cursor-pointer">Clear all</button>
+      </div>
 
-      <ul className="flex flex-col space-y-4 text-sm font-body">
-        {uniqueCategoryNames.map((name, index) => (
-          <li key={index}>
-            <Link
-              href={"#"}
-              className="text-on-surface hover:text-[#5f5e5e] transition-colors uppercase"
-            >
-              {name}
-              <span className="text-xs text-[#5f5f5f66] ml-1">
-                ({categoryCounts[name]}) {/* Hiển thị số lượng đã đếm */}
-              </span>
-            </Link>
-          </li>
+      <div className="space-y-2 text-sm font-body">
+        {categories.map((category) => (
+           <button
+              key={category.id}
+              onClick={() => onChange(
+                  selected === category.id ? undefined : category.id
+              )}
+              className={`block uppercase tracking-widest transition-colors
+                  ${selected === category.id
+                      ? "text-[#323233] font-bold"
+                      : "text-[#5f5f5f] hover:text-[#323233]"
+                  }`}
+          >
+              {category.name}
+          </button>
         ))}
-
-        <li className="cursor-not-allowed opacity-35 text-xs uppercase tracking-widest pt-2">
-          Sản Phẩm Lưu Trữ
-        </li>
-      </ul>
+      </div>
     </div>
   );
 }

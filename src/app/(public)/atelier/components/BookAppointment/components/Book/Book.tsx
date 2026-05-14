@@ -19,7 +19,6 @@ function Book() {
           mode="single"
           selected={date}
           onSelect={setDate}
-          // Vô hiệu hóa: những ngày trước hôm nay
           disabled={{ before: new Date() }}
           className="bg-[#f0eded] text-center text-sm p-5 w-[50%] cursor-pointer"
           locale={vi}

@@ -46,7 +46,7 @@ function ProfileInfo({ user, onUpdate }: IProps) {
         }
     };
 
-    const inputClass = "w-full bg-transparent text-[10px] text-stone-500 tracking-[0.2em] uppercase outline-none border-b border-[#b2b2b133] py-1 focus:border-[#323233] transition-all";
+    const inputClass = "w-full bg-transparent text-[10px] text-stone-500 tracking-[0.2em]  outline-none border-b border-[#b2b2b133] py-1 focus:border-[#323233] transition-all";
     const labelClass = "text-[10px] text-stone-500 uppercase tracking-[0.2em] whitespace-nowrap";
 
     return (
@@ -57,7 +57,7 @@ function ProfileInfo({ user, onUpdate }: IProps) {
                     name="username"
                     value={form.username}
                     onChange={handleChange}
-                    className="w-full text-xs font-black text-[#1c1917] uppercase tracking-widest outline-none border-b border-transparent focus:border-[#323233] transition-all bg-transparent py-1"
+                    className="w-full text-xs font-black text-[#1c1917] tracking-widest outline-none border-b border-transparent focus:border-[#323233] transition-all bg-transparent py-1"
                     placeholder="Username"
                 />
             </div>

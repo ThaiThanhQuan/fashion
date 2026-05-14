@@ -1,11 +1,16 @@
 "use client";
+
 interface IProps {
   selectedSize?: string;
-  onSelect?: (size: string) => void;
+  onSelect?: (size: string | undefined) => void;
 }
 
 function SizeSelector({ selectedSize, onSelect }: IProps) {
   const sizes = ["S", "M", "L", "XL"];
+
+  const handleSelect = (size: string) => {
+        onSelect?.(selectedSize === size ? undefined : size);
+    }
 
   return (
     <div className="mt-12">
@@ -16,7 +21,7 @@ function SizeSelector({ selectedSize, onSelect }: IProps) {
         {sizes.map((size, index) => (
           <button
             key={index}
-            onClick={() => onSelect?.(size)}
+            onClick={() => handleSelect(size)}
             className={`border py-3 text-[10px] focus:outline-none cursor-pointer transition-all duration-300
               ${
                 selectedSize === size

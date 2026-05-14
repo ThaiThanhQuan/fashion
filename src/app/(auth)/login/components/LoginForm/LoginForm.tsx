@@ -105,7 +105,7 @@ function LoginForm() {
             Chưa có tài khoản?
           </Link>
           <Link
-            href="/verify-email"
+            href="/forgot-password"
             className="text-xs uppercase tracking-widest text-(--primary-color) hover:opacity-70 transition-opacity"
           >
             Quên mật khẩu?

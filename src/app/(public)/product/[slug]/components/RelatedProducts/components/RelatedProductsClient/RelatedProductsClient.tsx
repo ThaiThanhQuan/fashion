@@ -30,7 +30,7 @@ function RelatedProductsClient({ products }: IProps) {
 
     return (
         <div className="py-(--padding-y) container">
-            <h2 className="text-2xl font-extrabold tracking-tighter uppercase mb-12">
+            <h2 className="mb-12 text-2xl font-extrabold tracking-tighter uppercase">
                 Sản phẩm liên quan
             </h2>
 

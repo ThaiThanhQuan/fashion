@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface IProps {
@@ -12,10 +12,15 @@ function ProfileAvatar({ imgSrc, onUpload }: IProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState(imgSrc);
 
+     useEffect(() => {
+        setPreview(imgSrc);
+    }, [imgSrc]);
+
     const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setPreview(URL.createObjectURL(file));  
+            const previewUrl = URL.createObjectURL(file);
+            setPreview(previewUrl);
             onUpload(file);
         }
     };

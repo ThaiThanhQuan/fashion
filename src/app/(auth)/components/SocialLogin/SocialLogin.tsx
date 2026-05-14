@@ -1,7 +1,13 @@
+'use client'
 import { icon } from "@/src/assets/icons";
 import Image from "next/image";
 
 function SocialLogin() {
+
+    const handleGoogleLogin = () => {
+        window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/oauth2/authorization/google`;
+    };
+
     return ( 
         <div>
             <div className="py-4  text-center">
@@ -11,7 +17,7 @@ function SocialLogin() {
         </div>
 
         <div>
-          <button className="flex w-full justify-center  items-center gap-5 border px-4 py-2 hover:bg-[#b2b2b126] cursor-pointer transition-colors duration-300">
+          <button onClick={handleGoogleLogin} className="flex w-full justify-center  items-center gap-5 border px-4 py-2 hover:bg-[#b2b2b126] cursor-pointer transition-colors duration-300">
             <Image src={icon.google} alt="Google Icon" width={20} height={20} />
             <span className="text-[12px] font-bold tracking-[1em] uppercase">
               Google

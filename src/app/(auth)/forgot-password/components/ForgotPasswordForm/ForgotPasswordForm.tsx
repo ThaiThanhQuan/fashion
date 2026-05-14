@@ -5,7 +5,7 @@ import { MailCheck } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-function VerifyEmailForm() {
+function ForgotPasswordForm() {
 
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -94,4 +94,4 @@ function VerifyEmailForm() {
     );
 }
 
-export default VerifyEmailForm;
+export default ForgotPasswordForm;

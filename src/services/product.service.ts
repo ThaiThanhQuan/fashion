@@ -5,7 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const productService = {
     filter: (queryParams?: IProductFilter) =>
-        sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product`, method: 'GET', queryParams }),
+        sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product/filter`, method: 'GET', queryParams }),
 
     getAll: (queryParams?: IPageable) =>
         sendRequest<IBackendRes<IPageResponse<IProduct>>>({ url: `${API_URL}/product`, method: 'GET', queryParams }),

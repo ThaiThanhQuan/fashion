@@ -2,15 +2,14 @@ function Newsletter() {
   return (
     <div className="container flex flex-col items-center py-(--padding-y) text-center">
       <h2 className="text-3xl font-bold tracking-tight uppercase font-headline">
-        Tạp Chí Kỹ Thuật Số
+        Đăng Ký Nhận Tin Bộ Sưu Tập Mới
       </h2>
-      <p className="max-w-2xl mt-12 leading-relaxed font-body">
-        Gia nhập cộng đồng của chúng tôi để nhận quyền truy cập sớm độc quyền
-        vào các bộ sưu tập, câu chuyện biên tập và các sự kiện xưởng may riêng
-        tư.
+      <p className="max-w-2xl mt-5 leading-relaxed font-body">
+        Cập nhật sớm nhất các bộ sưu tập mới, sản phẩm giới hạn và cảm hứng
+        thời trang được tuyển chọn dành riêng cho bạn.
       </p>
 
-      <div className="flex w-full max-w-lg mt-12 border-b border-gray-300">
+      <div className="flex w-full max-w-lg mt-5 border-b border-gray-300">
         <input
           type="email"
           placeholder="Địa chỉ email"
