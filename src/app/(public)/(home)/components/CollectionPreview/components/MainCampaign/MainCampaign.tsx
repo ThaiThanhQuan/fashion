@@ -15,7 +15,7 @@ function MainCampaign({collection}:  IProps) {
         width={606}
         height={400}
         priority
-        className="object-contain w-full transition-transform duration-1000 ease-out h-120 group-hover:scale-105"
+        className="object-contain w-90% transition-transform duration-1000 ease-out h-120 group-hover:scale-105"
       />
 
     </Link>

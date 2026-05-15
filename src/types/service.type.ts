@@ -23,7 +23,7 @@ export interface IHighlight {
 export interface IPricing {
     id: string
     label: string
-    price: string
+    price: number
     serviceId: string
 }
 

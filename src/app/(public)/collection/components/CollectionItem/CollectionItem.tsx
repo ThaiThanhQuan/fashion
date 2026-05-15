@@ -4,8 +4,8 @@ import { ICollection } from "@/src/types";
 
 interface IProps {
   collection: ICollection;
-  isBig: boolean;
-  hasMargin: boolean;
+  isBig?: boolean;
+  hasMargin?: boolean;
 }
 
 function CollectionItem({ collection, isBig, hasMargin }: IProps) {

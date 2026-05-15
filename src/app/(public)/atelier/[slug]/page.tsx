@@ -1,4 +1,4 @@
-import { CategoryServiceMockData } from "../data";
+import { artistService, pricingService, serviceService, timelineService, workflowService } from "@/src/services";
 import ArtistInfo from "./components/ArtistInfo/ArtistInfo";
 import HeroService from "./components/HeroService/HeroService";
 import Procedure from "./components/Procedure/Procedure";
@@ -8,7 +8,21 @@ import ServiceDetailsSection from "./components/ServiceDetailsSection/ServiceDet
 async function AtelierDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
-  const service = CategoryServiceMockData.find((item) => item.slug === slug);
+  const resService = await serviceService.getBySlug(slug)
+  const service = resService?.result
+  
+  const resArtist = await artistService.getById(service.artistId)
+  const artist = resArtist?.result
+
+  const resWorkFlow = await workflowService.getByService(service.id)
+  const workflows = resWorkFlow?.result
+
+  const resPricing = await pricingService.getByService(service.id)
+  const pricing = resPricing?.result
+
+  const resTimeline = await timelineService.getByService(service.id)
+  const timeline = resTimeline?.result
+
 
   if (!service) {
     return <div>Dịch vụ không tồn tại</div>;
@@ -18,10 +32,13 @@ async function AtelierDetailPage({ params }: { params: { slug: string } }) {
       <HeroService service={service} />
       <ServiceCrafts service={service} />
       <div id="procedure">
-        <Procedure service={service} />
+        <Procedure workflows={workflows} />
       </div>
-      <ArtistInfo service={service} />
-      <ServiceDetailsSection service={service} />
+      <ArtistInfo artist={artist} />
+      <ServiceDetailsSection 
+          timeline={timeline} 
+          pricing={pricing}
+        />
     </div>
   );
 }

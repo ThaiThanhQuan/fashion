@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { ICategoryServiceItem } from "../../../data";
+import { IService } from "@/src/types";
 
 interface IProps {
-  service: ICategoryServiceItem;
+  service: IService;
 }
 
 function ServiceCrafts({ service }: IProps) {
@@ -21,10 +21,10 @@ function ServiceCrafts({ service }: IProps) {
             </div>
             <div className="absolute bottom-0 right-0 w-64 h-80 bg-[#e4e2e2] p-8">
               <p className="text-4xl font-bold text-(--primary-color) mb-4 italic">
-                {service.feature_value}
+                {service.featureLabel}
               </p>
               <p className="font-label text-xs tracking-widest uppercase text-[#5f5f5f] leading-relaxed">
-                {service.feature_label}
+                {service.featureLabel}
               </p>
             </div>
           </div>
@@ -34,7 +34,7 @@ function ServiceCrafts({ service }: IProps) {
             Kỹ Nghệ Của Sự Chính Xác
           </h2>
           <p className="text-[#5f5f5f] font-light leading-relaxed text-lg">
-            {service.detailedDesc}
+            {service.detailDescription}
           </p>
 
           <div className="pt-6 mt-8 border-l-2 border-(--primary-color) pl-8">

@@ -3,7 +3,7 @@ import { Share2 } from "lucide-react";
 
 function FooterPolicy() {
   return (
-    <div className="flex justify-between pt-12">
+    <div className="flex justify-between">
       <span className="text-xs tracking-widest uppercase text-(--primary-color)">
         © 2024 DIGITAL COUTURE. BẢO LƯU MỌI QUYỀN.
       </span>

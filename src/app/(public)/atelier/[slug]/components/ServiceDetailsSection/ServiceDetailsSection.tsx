@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ICategoryServiceItem } from "../../../data";
+import { IPricing, ITimeline } from "@/src/types";
 
 interface IProps {
-  service: ICategoryServiceItem;
+  timeline: ITimeline[];
+  pricing: IPricing[]
 }
-function ServiceDetailsSection({ service }: IProps) {
+function ServiceDetailsSection({ timeline, pricing }: IProps) {
   return (
     <div className="bg-[#f0eded]">
       <div className="py-(--padding-y) container">
@@ -15,10 +16,10 @@ function ServiceDetailsSection({ service }: IProps) {
                 Chi Phí Đầu Tư
               </h3>
               <ul className="space-y-6">
-                {service.investment.map((item, index) => (
+                {pricing.map((item, index) => (
                   <li key={index} className="flex justify-between items-end ">
                     <span className="font-label text-sm uppercase text-[#5f5f5f]">
-                      {item.item}
+                      {item.label}
                     </span>
                     <span className="font-bold text-lg">
                       {item.price
@@ -35,7 +36,7 @@ function ServiceDetailsSection({ service }: IProps) {
                 Thời gian
               </h3>
               <ul className="space-y-6">
-                {service.timeline.map((item, index) => (
+                {timeline.map((item, index) => (
                   <li key={index} className="flex justify-between items-end ">
                     <span className="font-label text-sm uppercase text-[#5f5f5f]">
                       {item.label}

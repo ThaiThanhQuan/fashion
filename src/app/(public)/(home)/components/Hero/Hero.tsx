@@ -21,7 +21,7 @@ function Hero() {
       {/* Content */}
       <div className="container absolute flex flex-col items-center text-white">
         <h1 className="font-serif text-[clamp(72px,10vw,112px)] font-normal uppercase leading-[0.9] tracking-tight mb-6">
-          QUANTHAI
+          COUTURE
         </h1>
 
         <div className="flex flex-col items-start gap-3 mb-6">

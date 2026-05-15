@@ -1,4 +1,5 @@
 import { sendRequest } from "../lib/api";
+import { IBackendRes, IPricing } from "../types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

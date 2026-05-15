@@ -24,7 +24,9 @@ import login from "./store/login.png";
 import bg_author from "./store/bg_author.png";
 import heroservice from "./store/heroservice.png";
 import brandhero from "./store/brandhero.png";
-
+import couture_brand from "./store/couture_brand.svg";
+import couture from "./store/couture.png";
+import couture1 from "./store/couture1.png";
 export const images = {
   brand,
   collection,
@@ -51,5 +53,8 @@ export const images = {
   login,
   bg_author,
   heroservice,
-  brandhero
+  brandhero,
+  couture_brand,
+  couture,
+  couture1
 };

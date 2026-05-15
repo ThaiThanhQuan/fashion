@@ -1,10 +1,10 @@
-import { ICategoryServiceItem } from "../../../data";
+import { IWorkflow } from "@/src/types";
 
 interface IProps {
-  service: ICategoryServiceItem;
+  workflows: IWorkflow[];
 }
 
-function Procedure({ service }: IProps) {
+function Procedure({ workflows }: IProps) {
   return (
     <div className="bg-[#f6f3f2] py-(--padding-y)">
       <div className="container">
@@ -18,19 +18,19 @@ function Procedure({ service }: IProps) {
         </div>
 
         <div className="grid grid-cols-4">
-          {service.steps.map((step) => (
+          {workflows.map((workflow) => (
             <div
-              key={step.no}
+              key={workflow.id}
               className="group relative p-10 bg-[#fcf9f8] border-r border-[#b2b2b11a] hover:bg-white transition-colors duration-500"
             >
               <span className="text-6xl font-bold text-[#e4e2e280] mb-8 block">
-                {step.no}
+                {workflow.no}
               </span>
               <h3 className="text-xl font-bold mb-4 uppercase tracking-tight">
-                {step.title}
+                {workflow.title}
               </h3>
               <p className="text-[#5f5f5f] text-sm font-light leading-relaxed">
-                {step.content}
+                {workflow.content}
               </p>
             </div>
           ))}

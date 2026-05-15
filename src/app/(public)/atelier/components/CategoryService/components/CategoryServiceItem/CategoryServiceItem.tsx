@@ -7,8 +7,6 @@ interface IProps {
 }
 
 function CategoryServiceItem({ service }: IProps) {
-  console.log('service: ',service)
-
   return (
     <div className="cursor-pointer">
       <Link href={`/atelier/${service.slug}`}>

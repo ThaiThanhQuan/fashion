@@ -1,10 +1,10 @@
-import { images } from "@/src/assets/images";
 import Image from "next/image";
-import { ICategoryServiceItem } from "../../../data";
 import Link from "next/link";
+import { IService } from "@/src/types";
+import { images } from "@/src/assets/images";
 
 interface IProps {
-  service: ICategoryServiceItem;
+  service: IService;
 }
 
 function HeroService({ service }: IProps) {
@@ -25,10 +25,10 @@ function HeroService({ service }: IProps) {
             Dịch vụ {service.title}
           </span>
           <h1 className="text-8xl font-bold tracking-tighter text-on-surface mb-8">
-            {service.sub_title}
+            {service.subTitle}
           </h1>
           <p className="text-[#5f5f5f] text-xl font-light leading-relaxed mb-12">
-            {service.desc}
+            {service.description}
           </p>
 
           <div className="flex gap-6">
@@ -41,7 +41,7 @@ function HeroService({ service }: IProps) {
 
             <a
               href="#procedure"
-              className="border border-[#b2b2b133] px-12 py-5 text-sm uppercase tracking-widest font-bold hover:bg-[#f6f3f2] transition-all"
+              className="border border-[#b2b2b133] text-[#faf7f6] px-12 py-5 text-sm uppercase tracking-widest font-bold hover:bg-[#f6f3f2] hover:text-black transition-all"
             >
               Khám Phá Quy Trình
             </a>
