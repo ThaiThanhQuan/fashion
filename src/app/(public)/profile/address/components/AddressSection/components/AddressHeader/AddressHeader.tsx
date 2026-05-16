@@ -2,7 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import AddressModal from "../AddressModal/AddressModal";
+import AddressModal from "../../../AddressModal/AddressModal";
 
 function AddressHeader() {
   const [open, setOpen] = useState(false);

@@ -1,52 +1,55 @@
-import { create } from "zustand";
+// store/useAddressStore.ts
+import { create } from 'zustand';
+import { addressService } from '@/src/services';
+import { IAddress, IBackendRes, ICreateAddress } from '@/src/types';
 
-export interface AddressData {
-  id: string;
-  name: string;
-  phone: string;
-  address: string;
+interface AddressStore {
+    addresses: IAddress[];
+    fetchAddresses: () => Promise<void>;
+    addAddress: (data: ICreateAddress) => Promise<IBackendRes<IAddress>>;
+    deleteAddress: (id: string) => Promise<void>;
+    updateAddress: (id: string, data: ICreateAddress) => Promise<void>;
 }
 
-interface IAddressStore {
-  addresses: AddressData[];
-  defaultId: string | null;
-  addAddress: (data: Omit<AddressData, "id">) => void;
-  updateAddress: (id: string, data: Omit<AddressData, "id">) => void;
-  removeAddress: (id: string) => void;
-  setDefault: (id: string) => void;
-}
+export const useAddressStore = create<AddressStore>((set, get) => ({
+    addresses: [],
 
-export const useAddressStore = create<IAddressStore>((set) => ({
-  addresses: [],
-  defaultId: null,
+    fetchAddresses: async () => {
+        try {
+            const res = await addressService.getMyAddresses();
+            set({ addresses: res?.result?.content ?? [] }); 
+        } catch {
+            set({ addresses: [] });
+        }
+    },
 
-  addAddress: (data) =>
-    set((state) => {
-      const newAddress = { ...data, id: crypto.randomUUID() };
-      return {
-        addresses: [...state.addresses, newAddress],
-        // ← tự động set mặc định nếu chưa có
-        defaultId: state.defaultId ?? newAddress.id,
-      };
-    }),
+    addAddress: async (data) => {
+        const res = await addressService.create(data);
 
-  updateAddress: (id, data) =>
-    set((state) => ({
-      addresses: state.addresses.map((a) =>
-        a.id === id ? { ...a, ...data } : a,
-      ),
-    })),
+        if (res?.result) {
+            set(state => ({
+                addresses: [...state.addresses, res.result!]
+            }));
+        }
 
-  removeAddress: (id) =>
-    set((state) => {
-      const filtered = state.addresses.filter((a) => a.id !== id);
-      return {
-        addresses: filtered,
-        // ← nếu xóa cái đang mặc định thì chuyển sang cái đầu tiên
-        defaultId:
-          state.defaultId === id ? (filtered[0]?.id ?? null) : state.defaultId,
-      };
-    }),
+        return res;
+    },
 
-  setDefault: (id) => set({ defaultId: id }),
+    updateAddress: async (id, data) => {
+        const res = await addressService.update(id, data);
+        if (res?.result) {
+            set(state => ({
+                addresses: state.addresses.map(addr =>
+                    addr.id === id ? res.result! : addr
+                )
+            }));
+        }
+    },
+
+    deleteAddress: async (id) => {
+        await addressService.delete(id);
+        set(state => ({
+            addresses: state.addresses.filter(addr => addr.id !== id)
+        }));
+    }
 }));

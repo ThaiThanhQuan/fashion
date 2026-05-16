@@ -1,15 +1,16 @@
+
 export interface ICreateAddress {
-    name: string
+    recipientName: string
     phone: string
     address: string
-    isDefault: boolean
+    active: boolean
 }
 
-export interface IAddress {
+export interface IAddress  {
     id: string
     userId: string
-    name: string
+    recipientName: string
     phone: string
     address: string
-    isDefault: boolean
+    active: boolean
 }
