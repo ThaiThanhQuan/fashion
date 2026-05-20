@@ -1,19 +1,25 @@
 "use client";
 import { useAddressStore } from "@/src/store/useAddressStore";
+import { useAuthStore } from "@/src/store/useAuthStore";
 import { useCartStore } from "@/src/store/useCartStore";
+import { useCheckoutStore } from "@/src/store/useCheckoutStore";
 import { useOrderStore } from "@/src/store/useOrderStore";
 import { MoveRight, ShieldCheck } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-const SHIPPING_FEE = 45;
+const SHIPPING_FEE = 30000;
 const TAX_RATE = 0.1;
 
 function CheckoutTotal() {
-  const { addresses, defaultId } = useAddressStore();
+  const { addresses } = useAddressStore();
   const { items, clearCart } = useCartStore();
-  const { addOrder } = useOrderStore();
+  const { isLoggedIn } = useAuthStore();
+  const { paymentMethod } = useCheckoutStore();
+  const { createOrder, isLoading } = useOrderStore();
+  const router = useRouter();
 
-  const defaultAddress = addresses.find((a) => a.id === defaultId);
+  const defaultAddress = addresses.find((a) => a.active);
 
   const subtotal = items.reduce(
     (acc, i) => acc + i.product.price * i.quantity,
@@ -21,19 +27,48 @@ function CheckoutTotal() {
   );
   const tax = subtotal * TAX_RATE;
   const grandTotal = subtotal + SHIPPING_FEE + tax;
-  const canOrder = items.length > 0 && !!defaultAddress;
+  const hasRequiredCheckoutData = items.length > 0 && !!defaultAddress && !isLoading;
 
-  const handleOrder = () => {
-    if (!canOrder || !defaultAddress) return;
-    addOrder({
-      items,
-      address: defaultAddress,
-      subtotal,
-      shippingFee: SHIPPING_FEE,
-      tax,
-      grandTotal,
-    });
-    clearCart();
+  const handleOrder = async () => {
+    if (!isLoggedIn) {
+      toast.error("Vui lòng đăng nhập trước khi đặt hàng.");
+      router.push("/login");
+      return;
+    }
+
+    if (items.length === 0) {
+      toast.error("Giỏ hàng đang trống.");
+      return;
+    }
+
+    if (!defaultAddress) {
+      toast.error("Vui lòng thêm địa chỉ giao hàng mặc định.");
+      router.push("/profile/address");
+      return;
+    }
+
+    try {
+      const order = await createOrder({
+        addressId: defaultAddress.id,
+        paymentMethod,
+        orderItems: items.map((item) => ({
+          productId: item.product.id,
+          size: item.size,
+          quantity: item.quantity,
+        })),
+      });
+
+      if (!order) {
+        toast.error("Đặt hàng không thành công.");
+        return;
+      }
+
+      clearCart();
+      toast.success("Đặt hàng thành công. Email xác nhận đã được gửi.");
+      router.push("/profile/order-history");
+    } catch {
+      toast.error("Không thể đặt hàng lúc này.");
+    }
   };
 
   return (
@@ -72,25 +107,20 @@ function CheckoutTotal() {
       </div>
 
       <div className="mt-10 ">
-        <Link
-          href={canOrder ? "/profile/order-history" : "#"}
-          onClick={(e) => {
-            if (!canOrder) {
-              e.preventDefault();
-              return;
-            }
-            handleOrder();
-          }}
+        <button
+          type="button"
+          disabled={!hasRequiredCheckoutData}
+          onClick={handleOrder}
           className={`w-full flex justify-center items-center gap-3 bg-[#1c1917] text-[#fafaf9] py-5 font-bold uppercase tracking-widest text-sm transition-colors
     ${
-      canOrder
+      hasRequiredCheckoutData
         ? "hover:bg-[#292524] cursor-pointer"
-        : "opacity-40 cursor-not-allowed pointer-events-none"
+        : "opacity-40 cursor-not-allowed"
     }`}
         >
-          Đặt Hàng
+          {isLoading ? "Đang đặt hàng..." : "Đặt Hàng"}
           <MoveRight color="#fafaf9" />
-        </Link>
+        </button>
       </div>
 
       <div className="flex flex-col gap-4 pt-4">

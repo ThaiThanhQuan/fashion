@@ -1,18 +1,22 @@
 import { sendRequest } from "../lib/api";
-import { IBackendRes, IProductVariant } from "../types";
+import type { IBackendRes, IPageable, IPageResponse, IProductVariant } from "../types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const variantService = {
-    getByProduct: (productId: string) =>
-        sendRequest<IBackendRes<IProductVariant[]>>({ url: `${API_URL}/variants/product/${productId}`, method: 'GET' }),
+    getByProduct: (productId: string, queryParams?: IPageable) =>
+        sendRequest<IBackendRes<IPageResponse<IProductVariant>>>({
+            url: `${API_URL}/product_variants/${productId}`,
+            method: 'GET',
+            queryParams
+        }),
 
-    create: (body: { productId: string, size: string, stock: number }) =>
-        sendRequest<IBackendRes<IProductVariant>>({ url: `${API_URL}/variants`, method: 'POST', body }),
+    create: (body: { product_id: string, size: string, stock: number }) =>
+        sendRequest<IBackendRes<IProductVariant>>({ url: `${API_URL}/product_variants`, method: 'POST', body }),
 
     update: (id: string, body: { size: string, stock: number }) =>
-        sendRequest<IBackendRes<IProductVariant>>({ url: `${API_URL}/variants/${id}`, method: 'PUT', body }),
+        sendRequest<IBackendRes<IProductVariant>>({ url: `${API_URL}/product_variants/${id}`, method: 'PUT', body }),
 
     delete: (id: string) =>
-        sendRequest<IBackendRes<void>>({ url: `${API_URL}/variants/${id}`, method: 'DELETE' }),
+        sendRequest<IBackendRes<void>>({ url: `${API_URL}/product_variants/${id}`, method: 'DELETE' }),
 }

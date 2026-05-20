@@ -14,7 +14,7 @@ function OrderItem({ item }: IProps) {
     <div className="flex gap-8 py-2">
       <div className="relative w-56 aspect-4/5">
         <Image
-          src={item.product.thumbnail}
+          src={item.product.thumbnail ?? "/images/default_avatar.jpg"}
           fill
           alt=""
           className="object-cover grayscale hover:grayscale-0 transition-all duration-700"

@@ -18,7 +18,7 @@ function CheckoutSummary() {
             <div key={item.product.id} className="flex gap-6 items-start">
               <div>
                 <Image
-                  src={item.product.thumbnail}
+                  src={item.product.thumbnail ?? "/images/default_avatar.jpg"}
                   alt={item.product.title}
                   width={96}
                   height={128}

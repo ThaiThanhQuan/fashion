@@ -18,6 +18,7 @@ export const sendRequest = async <T>(props: IRequest): Promise<T> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options: any = {
         method,
+        cache: 'no-store',
         headers: new Headers({
             'content-type': 'application/json',
             ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
@@ -65,6 +66,7 @@ export const sendRequestFile = async <T>(props: IRequest): Promise<T> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options: any = {
         method,
+        cache: 'no-store',
         headers: new Headers({
             ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
             ...headers

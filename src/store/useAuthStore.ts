@@ -1,61 +1,140 @@
-import { create } from 'zustand';
-import Cookies from 'js-cookie';
-import { authService } from '../services';
-import { useWishlistStore } from './useWishlistStore';
+import { create } from "zustand";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+
+import { authService } from "../services";
+import { useWishlistStore } from "./useWishlistStore";
+
+interface DecodedToken {
+    scope?: string;
+    exp?: number;
+}
 
 interface AuthStore {
-    isLoggedIn: boolean
-    login: (token: string, refreshToken: string) => void
-    logout: () => void
-    checkAuth: () => Promise<void>
+    isLoggedIn: boolean;
+    isAdmin: boolean;
+
+    login: (token: string, refreshToken: string) => void;
+    logout: () => void;
+    checkAuth: () => Promise<void>;
 }
+
+// Helper decode token
+const getDecodedToken = (): DecodedToken | null => {
+    const token = Cookies.get("access_token");
+
+    if (!token) return null;
+
+    try {
+        return jwtDecode<DecodedToken>(token);
+    } catch {
+        return null;
+    }
+};
+
+// Helper check admin
+const checkIsAdmin = (): boolean => {
+    const decoded = getDecodedToken();
+
+    return decoded?.scope?.includes("ROLE_ADMIN") ?? false;
+};
 
 export const useAuthStore = create<AuthStore>((set) => ({
     isLoggedIn: !!Cookies.get("access_token"),
+    isAdmin: checkIsAdmin(),
 
     login: (token, refreshToken) => {
-        Cookies.set("access_token", token, { expires: 1/24, secure: true, sameSite: 'strict' });
-        Cookies.set("refresh_token", refreshToken, { expires: 1, secure: true, sameSite: 'strict' });
-        set({ isLoggedIn: true });
-        useWishlistStore.getState().fetchWishlist(); 
+        Cookies.set("access_token", token, {
+            expires: 1 / 24,
+            secure: true,
+            sameSite: "strict",
+        });
+
+        Cookies.set("refresh_token", refreshToken, {
+            expires: 1,
+            secure: true,
+            sameSite: "strict",
+        });
+
+        const decoded = jwtDecode<DecodedToken>(token);
+
+        set({
+            isLoggedIn: true,
+            isAdmin: decoded?.scope?.includes("ROLE_ADMIN") ?? false,
+        });
+
+        useWishlistStore.getState().fetchWishlist();
     },
 
     logout: () => {
         Cookies.remove("access_token");
         Cookies.remove("refresh_token");
-        set({ isLoggedIn: false });
+
+        set({
+            isLoggedIn: false,
+            isAdmin: false,
+        });
+
         useWishlistStore.getState().clearWishlist();
     },
 
-     // Check khi app khởi động
     checkAuth: async () => {
         const accessToken = Cookies.get("access_token");
         const refreshToken = Cookies.get("refresh_token");
 
-        // Còn access token → vẫn login
+        // còn access token
         if (accessToken) {
-            set({ isLoggedIn: true });
+            set({
+                isLoggedIn: true,
+                isAdmin: checkIsAdmin(),
+            });
+
             return;
         }
 
-        // Hết access token nhưng còn refresh token → refresh
+        // refresh token
         if (refreshToken) {
             try {
-                const res = await authService.refreshToken({ refreshToken: refreshToken });
+                const res = await authService.refreshToken({
+                    refreshToken,
+                });
+
                 if (res?.result) {
-                    Cookies.set("access_token", res.result.token, { expires: 1/24, secure: true, sameSite: 'strict' });
-                    Cookies.set("refresh_token", res.result.refreshToken, { expires: 1, secure: true, sameSite: 'strict' });
-                    set({ isLoggedIn: true });
+                    Cookies.set("access_token", res.result.token, {
+                        expires: 1 / 24,
+                        secure: true,
+                        sameSite: "strict",
+                    });
+
+                    Cookies.set("refresh_token", res.result.refreshToken, {
+                        expires: 1,
+                        secure: true,
+                        sameSite: "strict",
+                    });
+
+                    const decoded = jwtDecode<DecodedToken>(
+                        res.result.token
+                    );
+
+                    set({
+                        isLoggedIn: true,
+                        isAdmin:
+                            decoded?.scope?.includes("ROLE_ADMIN") ?? false,
+                    });
+
                     return;
                 }
             } catch {
-                // Refresh thất bại → logout
+                // refresh fail
             }
         }
 
-        // Không có token nào → logout
         Cookies.remove("access_token");
         Cookies.remove("refresh_token");
-        set({ isLoggedIn: false });
-    }
+
+        set({
+            isLoggedIn: false,
+            isAdmin: false,
+        });
+    },
 }));

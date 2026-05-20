@@ -11,7 +11,9 @@ interface AddressStore {
     updateAddress: (id: string, data: ICreateAddress) => Promise<void>;
 }
 
-export const useAddressStore = create<AddressStore>((set, get) => ({
+export type AddressData = IAddress;
+
+export const useAddressStore = create<AddressStore>((set) => ({
     addresses: [],
 
     fetchAddresses: async () => {

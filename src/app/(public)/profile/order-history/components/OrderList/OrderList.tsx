@@ -1,9 +1,22 @@
 "use client";
 import { useOrderStore } from "@/src/store/useOrderStore";
 import Image from "next/image";
+import { useEffect } from "react";
 
 function OrderList() {
-  const { orders } = useOrderStore();
+  const { orders, fetchOrders, isLoading } = useOrderStore();
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
+
+  if (isLoading) {
+    return (
+      <p className="text-sm mt-20 text-[#b2b2b1] uppercase tracking-widest">
+        Đang tải đơn hàng...
+      </p>
+    );
+  }
 
   return orders.length === 0 ? (
     <p className="text-sm mt-20 text-[#b2b2b1] uppercase tracking-widest">
@@ -16,7 +29,6 @@ function OrderList() {
           key={order.id}
           className="border-l-4 border-[--primary-color] bg-[#f0eded] p-8 space-y-6"
         >
-          {/* Header */}
           <div className="flex justify-between items-start">
             <div className="space-y-1">
               <p className="text-[10px] uppercase tracking-widest text-[#5f5f5f]">
@@ -31,25 +43,25 @@ function OrderList() {
                 Ngày đặt
               </p>
               <p className="text-xs font-bold text-[#323233]">
-                {order.createdAt.toLocaleDateString("vi-VN")}
+                {new Date(order.createdAt).toLocaleDateString("vi-VN")}
               </p>
             </div>
           </div>
 
-          {/* Địa chỉ */}
           <div className="space-y-1 text-xs text-[#5f5f5f]">
             <p className="text-[10px] uppercase tracking-widest">Giao đến</p>
-            <p className="font-bold text-[#323233]">{order.address.name}</p>
-            <p>Số điện thoại: {order.address.phone}</p>
-            <p>Địa chỉ: {order.address.address}</p>
+            <p className="font-bold text-[#323233]">
+              {order.address?.recipientName ?? "N/A"}
+            </p>
+            <p>Số điện thoại: {order.address?.phone ?? "N/A"}</p>
+            <p>Địa chỉ: {order.address?.address ?? order.addressId}</p>
           </div>
 
-          {/* Sản phẩm */}
           <div className="space-y-4">
-            {order.items.map((item, i) => (
-              <div key={i} className="flex gap-4 items-start">
+            {order.orderItems.map((item) => (
+              <div key={item.id} className="flex gap-4 items-start">
                 <Image
-                  src={item.product.thumbnail}
+                  src={item.product.thumbnail ?? "/images/default_avatar.jpg"}
                   alt={item.product.title}
                   width={64}
                   height={80}
@@ -67,17 +79,15 @@ function OrderList() {
                   </p>
                 </div>
                 <p className="text-xs font-bold">
-                  $
-                  {(item.product.price * item.quantity).toLocaleString("de-DE")}
+                  ${item.totalPrice.toLocaleString("de-DE")}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Tổng */}
           <div className="pt-4 border-t border-[#b2b2b11a] flex justify-between items-baseline">
             <span className="text-[10px] uppercase tracking-widest text-[#5f5f5f]">
-              Tổng Cộng
+              Tổng cộng
             </span>
             <span className="text-lg font-black tracking-tighter">
               ${order.grandTotal.toLocaleString("de-DE")}

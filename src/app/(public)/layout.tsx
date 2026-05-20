@@ -7,7 +7,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <div className="mt-(--header-height)"><AuthProvider>{children}</AuthProvider></div>
+      <div className="my-(--header-height)"><AuthProvider>{children}</AuthProvider></div>
       <Toaster />
       <Footer />
     </>

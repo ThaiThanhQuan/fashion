@@ -47,7 +47,7 @@ function UserDropdown() {
     } finally {
       logout();
 
-      router.push("/");
+      router.push("/login");
       router.refresh();
     }
   };

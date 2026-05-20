@@ -22,7 +22,7 @@ function LikeProductItem({ item }: IProps) {
       <div className="relative mb-4 overflow-hidden">
         <Link href={`/product/${item.slug}`}>
           <Image
-            src={item.thumbnail}
+            src={item.thumbnail ?? "/images/default_avatar.jpg"}
             width={400}
             height={400}
             alt=""

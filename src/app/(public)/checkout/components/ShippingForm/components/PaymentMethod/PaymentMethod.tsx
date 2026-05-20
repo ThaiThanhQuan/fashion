@@ -1,9 +1,9 @@
 "use client";
+import { useCheckoutStore } from "@/src/store/useCheckoutStore";
 import { CreditCard, Wallet } from "lucide-react";
-import { useState } from "react";
 
 function PaymentMethod() {
-  const [method, setMethod] = useState("card");
+  const { paymentMethod, setPaymentMethod } = useCheckoutStore();
   return (
     <div className="space-y-8 ">
       <h2 className="text-2xl font-bold tracking-tight text-stone-900">
@@ -17,9 +17,9 @@ function PaymentMethod() {
             <input
               type="radio"
               name="payment"
-              value="card"
-              checked={method === "card"}
-              onChange={() => setMethod("card")}
+              value="BANK_TRANSFER"
+              checked={paymentMethod === "BANK_TRANSFER"}
+              onChange={() => setPaymentMethod("BANK_TRANSFER")}
             />
           </div>
           <span className="text-sm font-bold tracking-tight">Thẻ Tín Dụng</span>
@@ -31,9 +31,9 @@ function PaymentMethod() {
             <input
               type="radio"
               name="payment"
-              value="cash"
-              checked={method === "cash"}
-              onChange={() => setMethod("cash")}
+              value="COD"
+              checked={paymentMethod === "COD"}
+              onChange={() => setPaymentMethod("COD")}
             />
           </div>
           <span className="text-sm font-bold tracking-tight">Tiền mặt</span>

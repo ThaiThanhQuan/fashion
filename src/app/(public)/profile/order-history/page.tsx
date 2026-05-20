@@ -1,6 +1,7 @@
 import OrderList from "./components/OrderList/OrderList";
 
-function OrderHistory() {
+async function OrderHistory() {
+
   return (
     <div className="space-y-10">
       <OrderList />

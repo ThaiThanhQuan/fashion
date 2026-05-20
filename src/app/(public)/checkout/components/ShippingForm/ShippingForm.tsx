@@ -1,11 +1,16 @@
 "use client";
 import { useAddressStore } from "@/src/store/useAddressStore";
 import Link from "next/link";
+import { useEffect } from "react";
 import PaymentMethod from "./components/PaymentMethod/PaymentMethod";
 
 function ShippingForm() {
-  const { addresses, defaultId } = useAddressStore();
-  const defaultAddress = addresses.find((a) => a.id === defaultId);
+  const { addresses, fetchAddresses } = useAddressStore();
+  const defaultAddress = addresses.find((a) => a.active);
+
+  useEffect(() => {
+    fetchAddresses();
+  }, [fetchAddresses]);
 
   return (
     <>
@@ -33,7 +38,7 @@ function ShippingForm() {
                 id="name"
                 type="text"
                 className="bg-transparent border-b border-[#b2b2b133] py-3 font-light"
-                value={defaultAddress.name}
+                value={defaultAddress.recipientName}
                 disabled
               />
             </div>

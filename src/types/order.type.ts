@@ -1,4 +1,5 @@
 import { IProduct } from "./product.type"
+import { IAddress } from "./address.type"
 
 export interface ICreateOrder {
     addressId: string
@@ -16,6 +17,7 @@ export interface IOrder {
     id: string
     userId: string
     addressId: string
+    address?: IAddress
     subtotal: number
     shippingFee: number
     tax: number

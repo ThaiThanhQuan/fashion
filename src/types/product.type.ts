@@ -29,7 +29,7 @@ export interface IProductVariant {
     id: string
     size: string
     stock: number
-    productId: string
+    product_id: string
 }
 
 export interface IProductImage {

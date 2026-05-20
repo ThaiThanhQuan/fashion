@@ -33,7 +33,7 @@ function AddressInfo({ data }: IProps) {
                     </span>
                 )}
 
-                <p className="font-bold text-sm uppercase tracking-widest mb-2">
+                <p className="font-bold text-sm tracking-widest mb-2">
                     {data.recipientName}
                 </p>
                 <p className="text-[#5f5f5f] text-sm mb-1">{data.phone}</p>
