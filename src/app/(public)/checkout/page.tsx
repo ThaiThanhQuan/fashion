@@ -4,7 +4,7 @@ import ShippingForm from "./components/ShippingForm/ShippingForm";
 
 function CheckOutPage() {
   return (
-    <div className="grid grid-cols-2 gap-16 container py-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 container py-12">
       <div className="space-y-12">
         <CheckoutSteps />
         <ShippingForm />

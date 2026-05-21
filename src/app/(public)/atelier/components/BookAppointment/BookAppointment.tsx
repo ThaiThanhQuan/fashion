@@ -16,7 +16,7 @@ function BookAppointment({services, artists}: IProps) {
 
   return (
     <div className="py-(--padding-y) px-(--padding-x)">
-      <div className="grid grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
          <Book
               date={date}
               time={time}

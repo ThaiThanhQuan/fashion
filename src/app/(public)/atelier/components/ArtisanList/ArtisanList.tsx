@@ -20,7 +20,7 @@ function ArtisanList({artists}: IProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-10 [&>div:nth-child(even)]:mt-24">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 [&>div:nth-child(even)]:mt-24">
         {artists.map((artist) => (
           <ArtistItem key={artist.id} artist={artist} />
         ))}

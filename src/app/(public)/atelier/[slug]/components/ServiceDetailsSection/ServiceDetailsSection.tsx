@@ -10,7 +10,7 @@ function ServiceDetailsSection({ timeline, pricing }: IProps) {
     <div className="bg-[#f0eded]">
       <div className="py-(--padding-y) container">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-bold mb-8 uppercase tracking-widest border-b border-[#b2b2b14d] pb-4">
                 Chi Phí Đầu Tư

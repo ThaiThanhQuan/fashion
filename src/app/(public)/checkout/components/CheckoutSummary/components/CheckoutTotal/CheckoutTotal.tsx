@@ -64,6 +64,12 @@ function CheckoutTotal() {
       }
 
       clearCart();
+
+      if (paymentMethod === "BANK_TRANSFER" && order.paymentUrl) {
+        window.location.href = order.paymentUrl;
+        return;
+      }
+
       toast.success("Đặt hàng thành công. Email xác nhận đã được gửi.");
       router.push("/profile/order-history");
     } catch {
@@ -118,7 +124,11 @@ function CheckoutTotal() {
         : "opacity-40 cursor-not-allowed"
     }`}
         >
-          {isLoading ? "Đang đặt hàng..." : "Đặt Hàng"}
+          {isLoading
+            ? "Đang đặt hàng..."
+            : paymentMethod === "BANK_TRANSFER"
+            ? "Thanh toán VNPay"
+            : "Đặt Hàng"}
           <MoveRight color="#fafaf9" />
         </button>
       </div>

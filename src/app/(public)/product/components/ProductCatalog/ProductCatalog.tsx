@@ -20,15 +20,15 @@ function ProductCatalog({ initialProducts, totalElements }: IProps) {
     const handleReset = () => setFilter({});
 
     return ( 
-        <div className="px-(--padding-x) grid grid-cols-12 gap-10 mb-10">
-        <div className="col-span-3">
+        <div className="px-(--padding-x) grid grid-cols-1 xl:grid-cols-12 gap-10 mb-10">
+        <div className="col-span-1 xl:col-span-3">
           <FilterSection 
                 filter={filter}
                 onFilter={handleFilter}
                 onReset={handleReset}
           />
         </div>
-        <div className="flex flex-col col-span-9 gap-5">
+        <div className="flex flex-col col-span-1 xl:col-span-9 gap-5">
             <ProductSort 
                 filter={filter}
                 onFilter={handleFilter}

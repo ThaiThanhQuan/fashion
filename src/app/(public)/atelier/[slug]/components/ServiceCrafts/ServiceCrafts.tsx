@@ -8,8 +8,8 @@ interface IProps {
 function ServiceCrafts({ service }: IProps) {
   return (
     <div className="container">
-      <div className="grid grid-cols-12 gap-10 py-(--padding-y)">
-        <div className="col-span-5">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 py-(--padding-y)">
+        <div className="col-span-1 xl:col-span-5">
           <div className="relative w-full h-150">
             <div className="relative w-[90%] h-142.5 group overflow-hidden">
               <Image
@@ -29,7 +29,7 @@ function ServiceCrafts({ service }: IProps) {
             </div>
           </div>
         </div>
-        <div className="col-span-7 flex flex-col justify-center">
+        <div className="col-span-1 xl:col-span-7 flex flex-col justify-center">
           <h2 className="text-5xl font-bold tracking-tighter mb-10">
             Kỹ Nghệ Của Sự Chính Xác
           </h2>

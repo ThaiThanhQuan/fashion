@@ -5,7 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const collectionService = {
     filter: (queryParams?: ICollectionFilter) =>
-        sendRequest<IBackendRes<IPageResponse<ICollection>>>({ url: `${API_URL}/collections`, method: 'GET', queryParams }),
+        sendRequest<IBackendRes<IPageResponse<ICollection>>>({ url: `${API_URL}/collections/filters`, method: 'GET', queryParams }),
 
     getAll: (queryParams?: IPageable) =>
             sendRequest<IBackendRes<IPageResponse<ICollection>>>({ url: `${API_URL}/collections`, method: 'GET', queryParams }),

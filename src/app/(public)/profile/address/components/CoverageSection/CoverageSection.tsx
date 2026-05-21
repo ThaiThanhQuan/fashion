@@ -1,6 +1,6 @@
 function CoverageSection() {
   return (
-    <div className=" bg-[#f6f3f2] overflow-hidden grid grid-cols-2 h-80 group">
+    <div className=" bg-[#f6f3f2] overflow-hidden grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-80 group">
       <div className="p-10 flex flex-col">
         <span className="text-[10px] uppercase tracking-[0.3em] text-(--primary-color) font-black mb-4">
           Vùng phủ sóng

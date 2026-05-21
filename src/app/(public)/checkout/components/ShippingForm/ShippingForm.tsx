@@ -26,7 +26,7 @@ function ShippingForm() {
 
       {defaultAddress ? (
         <div>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="name"

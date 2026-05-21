@@ -3,11 +3,11 @@ import OrderSummary from "./components/OrderSummary/OrderSummary";
 
 function OrderPage() {
   return (
-    <div className="grid grid-cols-12 gap-10 pt-2.5 container pb-(--padding-y)">
-      <div className=" col-span-8">
+    <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 pt-2.5 container pb-(--padding-y)">
+      <div className="col-span-1 xl:col-span-8">
         <OrderContent />
       </div>
-      <div className="col-span-4">
+      <div className="col-span-1 xl:col-span-4">
         <OrderSummary />
       </div>
     </div>

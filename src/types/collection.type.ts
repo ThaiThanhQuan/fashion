@@ -5,9 +5,7 @@ import { IProduct } from "./product.type"
 export interface ICollectionFilter extends IPageable {
     seasonId?: string
     categoryId?: string
-    artistId?: string
     year?: string
-    sortBy?: string
 }
 
 export interface ICollection {

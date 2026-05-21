@@ -1,84 +1,75 @@
 "use client";
-import { useState } from "react";
-import { FILTER_OPTIONS } from "../../data";
 
-function CollectionFilter() {
-  const [activeYear, setActiveYear] = useState("Tất cả");
-  const [activeSeason, setActiveSeason] = useState("Xuân/Hè");
-  const [activeCategory, setActiveCategory] = useState("Couture");
+import { useEffect, useState } from "react";
 
-  return (
-    <div className="flex flex-wrap gap-12 cursor-pointer pb-8 mb-16 border-b border-[#b2b2b126]">
-      {/* Year Filter */}
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-[#5f5f5f] mb-4 block">
-          Năm
-        </p>
+import {
+    categoryCollectionService,
+    seasonService,
+} from "@/src/services";
 
-        <div className="flex gap-6">
-          {FILTER_OPTIONS.years.map((year, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveYear(year.toString())}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                activeYear === year.toString()
-                  ? "text-(--primary-color)"
-                  : "text-[#323233] hover:text-(--primary-color)/70"
-              }`}
-            >
-              {year}
-            </button>
-          ))}
+import {
+    ICollectionFilter,
+    ICategoryCollection,
+    ISeason,
+    ICollection,
+} from "@/src/types";
+import YearFilter from "./components/YearFilter/YearFilter";
+import SeasonFilter from "./components/SeasonFilter/SeasonFilter";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+
+interface IProps {
+    collections: ICollection[];
+    filter: ICollectionFilter;
+    onFilter: (filter: Partial<ICollectionFilter>) => void;
+}
+
+function CollectionFilter({ collections, filter, onFilter }: IProps) {
+    const [seasons, setSeasons] = useState<ISeason[]>([]);
+    const [categories, setCategories] = useState<
+        ICategoryCollection[]
+    >([]);
+
+    const years = [
+        "Tất cả",
+        ...new Set(collections.map((item) => item.year))
+    ];
+
+    useEffect(() => {
+        seasonService
+            .getAll()
+            .then((res) => setSeasons(res?.result ?? []));
+
+        categoryCollectionService
+            .getAll()
+            .then((res) => setCategories(res?.result ?? []));
+    }, []);
+
+    return (
+        <div className="flex flex-wrap gap-12 cursor-pointer pb-8 mb-16 border-b border-[#b2b2b126]">
+
+            <YearFilter
+                years={years}
+                value={filter.year}
+                onFilter={(year) => onFilter({ year })}
+            />
+
+            <SeasonFilter
+                seasons={seasons}
+                value={filter.seasonId}
+                onFilter={(seasonId) =>
+                    onFilter({ seasonId })
+                }
+            />
+
+            <CategoryFilter
+                categories={categories}
+                value={filter.categoryId}
+                onFilter={(categoryId) =>
+                    onFilter({ categoryId })
+                }
+            />
         </div>
-      </div>
-
-      {/* Season Filter */}
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-[#5f5f5f] mb-4 block">
-          Mùa
-        </p>
-
-        <div className="flex gap-6">
-          {FILTER_OPTIONS.seasons.map((season, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveSeason(season.toString())}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                activeSeason === season.toString()
-                  ? "text-(--primary-color)"
-                  : "text-[#323233] hover:text-(--primary-color)/70"
-              }`}
-            >
-              {season}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Category Filter */}
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-[#5f5f5f] mb-4 block">
-          Danh mục
-        </p>
-
-        <div className="flex gap-6">
-          {FILTER_OPTIONS.categories.map((category, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveCategory(category.toString())}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                activeCategory === category.toString()
-                  ? "text-(--primary-color)"
-                  : "text-[#323233] hover:text-(--primary-color)/70"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default CollectionFilter;

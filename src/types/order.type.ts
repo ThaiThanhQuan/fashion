@@ -25,6 +25,7 @@ export interface IOrder {
     status: string
     paymentMethod: string
     paymentStatus: string
+    paymentUrl?: string
     createdAt: string
     orderItems: IOrderItem[]
 }

@@ -8,12 +8,12 @@ interface IProps {
 }
 function ProductDetailItem({ product, variants }: IProps) {
   return (
-    <div className="grid grid-cols-12 gap-16">
-      <div className="col-span-7">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div className="col-span-1 lg:col-span-7">
         <ProductDetailGallery product={product} />
       </div>
 
-      <div className="col-span-5">
+      <div className="col-span-1 lg:col-span-5">
         <ProductDetailInfo product={product} variants={variants} />
       </div>
     </div>

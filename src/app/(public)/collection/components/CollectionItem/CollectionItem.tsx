@@ -14,7 +14,7 @@ function CollectionItem({ collection, isBig, hasMargin }: IProps) {
       href={`/collection/${collection.slug}`}
       key={collection.id}
       className={`group cursor-pointer 
-          ${isBig ? "col-span-8" : "col-span-4"} 
+          ${isBig ? "col-span-12 md:col-span-8" : "col-span-12 md:col-span-4"} 
           ${hasMargin ? "mt-24" : "mt-0"}`}
     >
       <div

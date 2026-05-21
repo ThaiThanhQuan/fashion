@@ -17,13 +17,13 @@ async function Collections() {
 
 
   return (
-    <section className="grid grid-cols-12 py-(--padding-y) container">
-      <div className="col-span-8">
+    <section className="grid grid-cols-1 xl:grid-cols-12 py-(--padding-y) container">
+      <div className="col-span-1 xl:col-span-8">
         <MainCampaign collection={firstCollection}/>
         <CollectionTitle collection={firstCollection}/>
       </div>
 
-      <div className="col-span-4 flex flex-col gap-8">
+      <div className="col-span-1 xl:col-span-4 flex flex-col gap-8">
         <AtelierCard />
         <CampaignDescription />
         <ServiceCard service={firstService}/>

@@ -3,11 +3,11 @@ import AtelierGallery from "./components/AtelierGallery/AtelierGallery";
 
 function HeroAtelier() {
   return (
-    <div className="grid grid-cols-12 gap-5 pb-7.5 px-(--padding-x)">
-      <div className="col-span-7 flex flex-col justify-center">
+    <div className="grid grid-cols-1 xl:grid-cols-12 gap-5 pb-7.5 px-(--padding-x)">
+      <div className="col-span-1 xl:col-span-7 flex flex-col justify-center">
         <AtelierContent />
       </div>
-      <div className="col-span-5">
+      <div className="col-span-1 xl:col-span-5">
         <AtelierGallery />
       </div>
     </div>

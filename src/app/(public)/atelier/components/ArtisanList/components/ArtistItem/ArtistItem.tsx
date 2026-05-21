@@ -7,7 +7,7 @@ interface IProps {
 
 function ArtistItem({artist}: IProps) {
     return ( 
-        <div className="flex gap-10 col-span-6">
+        <div className="flex flex-col lg:flex-row gap-10 col-span-1 lg:col-span-6">
             <div className="relative aspect-3/4 w-full">
             <Image
                 src={artist.thumbnail}

@@ -17,7 +17,7 @@ async function Trend() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 px-(--padding-x)">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 px-(--padding-x)">
         {products.map((item) => (
           <TrendProduct key={item.id} product={item} />
         ))}

@@ -9,8 +9,8 @@ interface IProps {
 function DesignIdea({ collection }: IProps) {
   return (
     <div className=" py-(--padding-y)">
-      <div className="grid grid-cols-2 gap-32">
-        <div className="relative w-full h-150">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
+        <div className="relative w-full h-auto lg:h-150">
           <div className="relative w-[90%] h-142.5 group overflow-hidden">
             <Image
               src={images.bg_author}
